@@ -62,6 +62,7 @@ const toggleTheme = (event) => {
     v-model="toggleDarkModel"
     :active-action-icon="Sunny"
     :inactive-action-icon="Moon"
+    @click="toggleTheme"
   />
   
 </template>
@@ -74,5 +75,39 @@ const toggleTheme = (event) => {
   display: inline-block;
   width: 7em;
   cursor: pointer;
+}
+[data-bs-theme="light"] {
+  body {
+    background-color: #ffffff;
+  }
+}
+
+[data-bs-theme="dark"] {
+  body {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2147483646;
+}
+
+[data-bs-theme="dark"]::view-transition-old(root) {
+  z-index: 2147483646;
+}
+
+[data-bs-theme="dark"]::view-transition-new(root) {
+  z-index: 1;
 }
 </style>
