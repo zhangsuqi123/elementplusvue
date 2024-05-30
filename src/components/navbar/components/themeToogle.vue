@@ -1,0 +1,78 @@
+<script setup>
+import {ref} from 'vue'
+import { Sunny, Moon } from '@element-plus/icons-vue'
+import { useDark, useToggle } from "@vueuse/core";
+
+// const themeChange = (val) => {
+//   console.log(val)
+// }
+
+const theme = localStorage.getItem("theme-appearance") || "light";
+const toggleDarkModel = ref(theme === "dark");
+
+const isDark = useDark({
+  storageKey: "theme-appearance",
+  selector: "html",
+  attribute: "data-bs-theme",
+  valueDark: "dark",
+  valueLight: "light",
+});
+const toggleDark = useToggle(isDark);
+
+const toggleTheme = (event) => {
+  const x = event.clientX;
+  const y = event.clientY;
+  const endRadius = Math.hypot(
+    Math.max(x, innerWidth - x),
+    Math.max(y, innerHeight - y)
+  );
+
+  // 兼容性处理
+  if (!document.startViewTransition) {
+    toggleDark();
+    return;
+  }
+  const transition = document.startViewTransition(async () => {
+    toggleDark();
+  });
+
+  transition.ready.then(() => {
+    const clipPath = [
+      `circle(0px at ${x}px ${y}px)`,
+      `circle(${endRadius}px at ${x}px ${y}px)`,
+    ];
+    document.documentElement.animate(
+      {
+        clipPath: isDark.value ? [...clipPath].reverse() : clipPath,
+      },
+      {
+        duration: 400,
+        easing: "ease-in",
+        pseudoElement: isDark.value
+          ? "::view-transition-old(root)"
+          : "::view-transition-new(root)",
+      }
+    );
+  });
+};
+</script>
+
+<template>
+  <el-switch
+    v-model="toggleDarkModel"
+    :active-action-icon="Sunny"
+    :inactive-action-icon="Moon"
+  />
+  
+</template>
+
+<style lang="scss">
+/* The switch - the box around the slider */
+#theme-toggle-button {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 7em;
+  cursor: pointer;
+}
+</style>

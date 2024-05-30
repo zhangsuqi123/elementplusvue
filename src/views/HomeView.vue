@@ -2,10 +2,11 @@
 import { computed } from 'vue';
 import { useCounterStore } from '@/stores/counter';
 import { useI18n } from 'vue-i18n'
+import themeToogle from '@/components/navbar/components/themeToogle.vue'
 const addNum = () => {
   return useCounterStore().increment()
 }
-console.log(import.meta.env)
+// console.log(import.meta.env)
 
 // const num = ref(useCounterStore().$state.count)
 
@@ -26,5 +27,6 @@ const setLocale = (newLocale) => {
     <button @click="addNum">点击的时候count+1</button>
     <button @click="setLocale('zh')">切换中文</button>
     <button @click="setLocale('en')">切换英文</button>
+    <themeToogle></themeToogle>
   </main>
 </template>
