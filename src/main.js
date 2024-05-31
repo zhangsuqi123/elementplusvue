@@ -2,17 +2,13 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import App from './App.vue'
 const app = createApp(App)
+
 app.use(createPinia())
+import plugin from '@/libs/plugin';
 
-
-
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
-}
 // 引入路由配置
 import router from './router'
 
@@ -21,5 +17,6 @@ import il8n from  './il8n'
 
 app.use(router)
 app.use(il8n)
+app.use(plugin)
 
 app.mount('#app')

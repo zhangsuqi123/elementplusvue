@@ -8,7 +8,7 @@ import { useDark, useToggle } from "@vueuse/core";
 // }
 
 const theme = localStorage.getItem("theme-appearance") || "light";
-const toggleDarkModel = ref(theme === "dark");
+const toggleDarkModel = ref(theme === "light");
 
 const isDark = useDark({
   storageKey: "theme-appearance",
@@ -60,8 +60,8 @@ const toggleTheme = (event) => {
 <template>
   <el-switch
     v-model="toggleDarkModel"
-    :active-action-icon="Sunny"
-    :inactive-action-icon="Moon"
+    :active-action-icon="Moon"
+    :inactive-action-icon="Sunny"
     @click="toggleTheme"
   />
   

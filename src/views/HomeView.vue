@@ -14,7 +14,7 @@ const num = computed(() => {
   return useCounterStore().$state.count
 })
 
-const { t, locale } = useI18n()
+const { locale } = useI18n()
 const setLocale = (newLocale) => {
   locale.value = newLocale
 }
@@ -23,7 +23,7 @@ const setLocale = (newLocale) => {
 <template>
   <main>
     当前count为{{ num }}
-    {{ t('hello') }}
+    {{ $t('hello') }}
     <button @click="addNum">点击的时候count+1</button>
     <button @click="setLocale('zh')">切换中文</button>
     <button @click="setLocale('en')">切换英文</button>
