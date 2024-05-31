@@ -64,31 +64,4 @@ const toggleTheme = (event) => {
     :inactive-action-icon="Sunny"
     @click="toggleTheme"
   />
-  
 </template>
-
-<style lang="scss">
-/* The switch - the box around the slider */
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-::view-transition-old(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 2147483646;
-}
-
-[data-bs-theme="dark"]::view-transition-old(root) {
-  z-index: 2147483646;
-}
-
-[data-bs-theme="dark"]::view-transition-new(root) {
-  z-index: 1;
-}
-</style>
