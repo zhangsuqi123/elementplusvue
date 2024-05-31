@@ -1,13 +1,5 @@
-// @import './variables/_dark';
-// @import './variables/_light';
-:root{
-  --page-background-color: #F2F3F5; /* 页面背景色*/
-  // --basic-black: #000000;
-}
-[data-bs-theme="dark"] {
-  --page-background-color: #000000; /* 页面背景色*/
-  // --basic-black: #F2F3F5;
-}
+@import './variables/_dark';
+@import './variables/_light';
 
 body {
   background-color: var(--page-background-color);

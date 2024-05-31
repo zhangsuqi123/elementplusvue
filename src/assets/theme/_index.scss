@@ -1,16 +1,9 @@
 [data-bs-theme="light"] {
-  body {
-    background-color: #ffffff;
-    color: #cccccc;
-  }
+  @import './theme';
 }
 
 [data-bs-theme="dark"] {
-  body {
-    background-color: #000000;
-    color: #ffffff;
-  }
-  // @import './themedark';
+  @import './theme';
 }
 
 ::view-transition-old(root),

@@ -27,7 +27,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/assets/theme/_theme.scss";`
+        additionalData: `
+        @import "@/assets/theme/_theme.scss";
+        @import "@/assets/theme/variables/_light.scss";
+        @import "@/assets/theme/variables/_dark.scss";
+        `
       }
     }
   }

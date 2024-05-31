@@ -1,4 +1,4 @@
-body.dark{
+[data-bs-theme="dark"] {
   /* /* 主要颜色配置 */
   --primary: #409EFF; /* 主色*/
   --success: #67C23A; /* 成功色*/
@@ -29,7 +29,7 @@ body.dark{
   --fill-extra-light: #FAFCFF; /* 最浅的填充色*/
   --fill-blank: var(--white); /* 空白填充色*/
   /* 填充色end*/
-  --page-background-color: #F2F3F5; /* 页面背景色*/
+  --page-background-color: #000000; /* 页面背景色*/
   --transparent: transparent; /* 透明色*/
   --basic-black: #000000; /* 基础黑色*/
   --basic-white: var(--white); /* 基础白色*/
