@@ -7,8 +7,8 @@ import { useDark, useToggle } from "@vueuse/core";
 //   console.log(val)
 // }
 
-const theme = localStorage.getItem("theme-appearance") || "light";
-const toggleDarkModel = ref(theme === "light");
+const theme = localStorage.getItem("theme-appearance") || "dark";
+const toggleDarkModel = ref(theme === "dark");
 
 const isDark = useDark({
   storageKey: "theme-appearance",
@@ -69,25 +69,6 @@ const toggleTheme = (event) => {
 
 <style lang="scss">
 /* The switch - the box around the slider */
-#theme-toggle-button {
-  font-size: 17px;
-  position: relative;
-  display: inline-block;
-  width: 7em;
-  cursor: pointer;
-}
-[data-bs-theme="light"] {
-  body {
-    background-color: #ffffff;
-  }
-}
-
-[data-bs-theme="dark"] {
-  body {
-    background-color: #000;
-    color: #fff;
-  }
-}
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
