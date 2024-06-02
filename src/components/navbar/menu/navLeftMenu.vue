@@ -1,5 +1,7 @@
 <script setup>
 import { h, ref } from 'vue'
+import { useRouter } from 'vue-router';
+const router = useRouter();
 import {
   SettingOutlined,
   MailOutlined,
@@ -52,21 +54,30 @@ const items = ref([
             key: '6',
             label: 'Option 6',
             title: 'Option 6',
+            children: [
+              {
+                key: '55',
+                label: 'Option 5',
+                title: 'Option 5',
+              },
+            ]
           },
         ],
       },
     ],
   },
   {
-    key: 'sub2',
+    key: 'Settings',
     icon: () => h(SettingOutlined),
-    label: 'Navigation Four',
-    title: 'Navigation Four',
+    label: '系统设置',
+    title: '系统设置',
     children: [
       {
-        key: '7',
-        label: 'Option 7',
-        title: 'Option 7',
+        key: 'MenuInfo',
+        label: '菜单信息',
+        title: '菜单信息',
+        path: '/settings/menu-info',
+        // component: '@/views/settings/MenuInfo.vue'
       },
       {
         key: '8',
@@ -86,6 +97,11 @@ const items = ref([
     ],
   },
 ]);
+const toPage = ({ item, key, keyPath }) => {
+  console.log(item, key, keyPath)
+  selectedKeys.value = keyPath
+  router.push(item.path)
+}
 </script>
 <template>
   <a-menu
@@ -94,5 +110,6 @@ const items = ref([
     :inline-collapsed="collapsed"
     mode="inline"
     :items="items"
+    @click="toPage"
   />
 </template>

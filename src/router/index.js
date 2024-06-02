@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { h } from 'vue'
+import { SettingOutlined } from '@ant-design/icons-vue';
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -21,6 +23,21 @@ const router = createRouter({
       meta: {
         isFullScreen: true
       }
+    },
+    {
+      key: 'Settings',
+      icon: () => h(SettingOutlined),
+      label: '系统设置',
+      title: '系统设置',
+      children: [
+        {
+          key: 'MenuInfo',
+          label: '菜单信息',
+          title: '菜单信息',
+          path: '/settings/menu-info',
+          component: () => import('@/views/settings/MenuInfo.vue')
+        }
+      ],
     }
   ]
 })

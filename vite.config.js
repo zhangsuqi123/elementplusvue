@@ -34,8 +34,8 @@ export default defineConfig({
       scss: {
         additionalData: `
         @import "@/assets/theme/_theme.scss";
-        @import "@/assets/theme/variables/_light.scss";
-        @import "@/assets/theme/variables/_dark.scss";
+        @import "@/assets/variables/_light.scss";
+        @import "@/assets/variables/_dark.scss";
         `
       }
     }

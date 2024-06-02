@@ -39,8 +39,11 @@
   --overlay-background-color: var(--white); // 覆盖背景色
   // 菜单start
   --menu-background-color: var(--white);
-  --menu-active-background-color: rgba(0, 0, 0, 0.06);
-  --menu-active-text-color: rgba(0, 0, 0, 0.88);
+  --menu-active-background-color: #0000000e;
+  --menu-active-text-color: #000000e0;
+  --menu-hover-background-color: #7a7a7a2c;
+  --menu-hover-text-color: #606266;
+  --menu-sub-1-background-color: #000000e0;
   // 菜单 end
   // boxshadow start
   --box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08);

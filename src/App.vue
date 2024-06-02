@@ -1,25 +1,35 @@
 <script setup>
-import { RouterView, useRoute } from 'vue-router'
-import { ref } from 'vue';
-// const selectedKeys = ref(['1']);
-const collapsed = ref(false);
-// const openKeys = ref(['sub1']);
-// import { useAppConfigStore } from '@/stores/appConfig';
+import { RouterView, useRoute, useRouter } from 'vue-router';
+import { ref, watchEffect } from 'vue';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined
 } from '@ant-design/icons-vue';
-import navLeftMenu from '@/components/navbar/menu/navLeftMenu.vue'
-import themeToogle from '@/components/navbar/components/themeToogle.vue'
-const { meta } = useRoute()
-const {isFullScreen} = ref(meta)
+import navLeftMenu from '@/components/navbar/menu/navLeftMenu.vue';
+import themeToogle from '@/components/navbar/components/themeToogle.vue';
 
+const collapsed = ref(false);
 
+// 获取当前路由
+const route = useRoute();
+const router = useRouter();
 
+// 定义 isFullScreen 并设置初始值
+const isFullScreen = ref(route.meta.isFullScreen);
+
+// 监听路由变化，并动态更新 isFullScreen
+watchEffect(() => {
+  isFullScreen.value = route.meta.isFullScreen;
+});
+
+// 使用路由导航守卫提前处理 isFullScreen 状态
+router.beforeEach((to, from, next) => {
+  isFullScreen.value = to.meta.isFullScreen;
+  next();
+});
 </script>
 
 <template>
-  {{ isFullScreen }}
   <RouterView v-if="isFullScreen"></RouterView>
   <a-layout v-else>
     <a-layout-sider v-model:collapsed="collapsed" theme="light" :trigger="null" collapsible width="2rem" height="9rem">
@@ -42,7 +52,7 @@ const {isFullScreen} = ref(meta)
         <a-breadcrumb-item>App</a-breadcrumb-item>
       </a-breadcrumb>
       <a-layout-content
-        :style="{ margin: '16px 16px 0px', padding: '24px', minHeight: '280px' }"
+        :style="{ margin: '20px 20px 0px', padding: '10px 10px 0px', minHeight: '280px' }"
       >
         <RouterView></RouterView>
       </a-layout-content>
@@ -57,7 +67,7 @@ const {isFullScreen} = ref(meta)
 .trigger {
   font-size: 18px;
   line-height: 64px;
-  padding: 0 24px;
+  padding: 0 16px;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -68,7 +78,7 @@ const {isFullScreen} = ref(meta)
 
 .logo {
   height: 64px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 0, 0, 0.3);
   margin: 16px;
 }
 
