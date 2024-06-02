@@ -1,9 +1,9 @@
 [data-bs-theme="light"] {
-  @import './theme';
+  @import './theme/theme';
 }
 
 [data-bs-theme="dark"] {
-  @import './theme';
+  @import './theme/theme';
 }
 
 ::view-transition-old(root),

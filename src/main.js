@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 const app = createApp(App)
 
-import '@/assets/theme/_index.scss';
+import '@/assets/_index.scss';
 
 app.use(createPinia())
 import plugin from '@/libs/plugin';
