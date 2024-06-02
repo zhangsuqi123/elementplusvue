@@ -18,5 +18,6 @@ import il8n from  '@/il8n'
 app.use(router)
 app.use(il8n)
 app.use(plugin)
+import '@/libs/flexible'
 
 app.mount('#app')

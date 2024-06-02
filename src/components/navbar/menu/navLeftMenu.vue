@@ -1,42 +1,98 @@
 <script setup>
-import { ref } from 'vue'
+import { h, ref } from 'vue'
 import {
-  Document,
-  Menu as IconMenu,
-  Setting,
-} from '@element-plus/icons-vue'
-
-const isCollapse = ref(false)
-const handleOpen = (key, keyPath) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key, keyPath) => {
-  console.log(key, keyPath)
-}
+  SettingOutlined,
+  MailOutlined,
+  CalendarOutlined,
+  AppstoreOutlined
+} from '@ant-design/icons-vue';
+const selectedKeys = ref([]);
+const collapsed = ref(false);
+const openKeys = ref([]);
+const items = ref([
+  {
+    key: '1',
+    icon: () => h(MailOutlined),
+    label: 'Navigation One',
+    title: 'Navigation One',
+  },
+  {
+    key: '2',
+    icon: () => h(CalendarOutlined),
+    label: 'Navigation Two',
+    title: 'Navigation Two',
+  },
+  {
+    key: 'sub1',
+    icon: () => h(AppstoreOutlined),
+    label: 'Navigation Three',
+    title: 'Navigation Three',
+    children: [
+      {
+        key: '3',
+        label: 'Option 3',
+        title: 'Option 3',
+      },
+      {
+        key: '4',
+        label: 'Option 4',
+        title: 'Option 4',
+      },
+      {
+        key: 'sub1-2',
+        label: 'Submenu',
+        title: 'Submenu',
+        children: [
+          {
+            key: '5',
+            label: 'Option 5',
+            title: 'Option 5',
+          },
+          {
+            key: '6',
+            label: 'Option 6',
+            title: 'Option 6',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'sub2',
+    icon: () => h(SettingOutlined),
+    label: 'Navigation Four',
+    title: 'Navigation Four',
+    children: [
+      {
+        key: '7',
+        label: 'Option 7',
+        title: 'Option 7',
+      },
+      {
+        key: '8',
+        label: 'Option 8',
+        title: 'Option 8',
+      },
+      {
+        key: '9',
+        label: 'Option 9',
+        title: 'Option 9',
+      },
+      {
+        key: '10',
+        label: 'Option 10',
+        title: 'Option 10',
+      },
+    ],
+  },
+]);
 </script>
 <template>
-<el-menu
-    default-active="2"
-    class="el-menu-vertical-demo"
-    :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
-  >
-    <el-menu-item index="1">
-      <el-icon><icon-menu /></el-icon>
-      <template #title>item one</template>
-    </el-menu-item>
-    <el-menu-item index="2">
-      <el-icon><icon-menu /></el-icon>
-      <template #title>Navigator Two</template>
-    </el-menu-item>
-    <el-menu-item index="3">
-      <el-icon><document /></el-icon>
-      <template #title>Navigator Three</template>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <el-icon><setting /></el-icon>
-      <template #title>Navigator Four</template>
-    </el-menu-item>
-  </el-menu>
+  <a-menu
+    v-model:openKeys="openKeys"
+    v-model:selectedKeys="selectedKeys"
+    :inline-collapsed="collapsed"
+    mode="inline"
+    :items="items"
+  />
 </template>

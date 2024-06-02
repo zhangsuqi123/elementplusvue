@@ -1,32 +1,43 @@
 [data-bs-theme="dark"] {
   // 文本的颜色start
-  --text-color-primary: #303133; // 主文本色
-  --text-color-regular: #d8d8d8; // 主文本色
-  --text-color-secondary: #909399; // 次文本色
-  --text-color-placeholder: #A8ABB2; // 占位文本色
-  --text-color-disabled: #C0C4CC; // 失效文本色
+  --text-color-primary: #E5EAF3; // 主文本色
+  --text-color-regular: #CFD3DC; // 主文本色
+  --text-color-secondary: #A3A6AD; // 次文本色
+  --text-color-placeholder: #8D9095; // 占位文本色
+  --text-color-disabled: #6C6E72; // 失效文本色
   // 文本的颜色end
   // 边框的颜色start
-  --border-color-dark: #CDD0D6; // 深色边框
-  --border-color: #D4D7DE; // 常规边框
-  --border-color-base: #D4D7DE; // 常规边框
-  --border-color-light: #E4E7ED; // 浅色边框
-  --border-color-lighter: #EBEEF5; // 更浅的边框色
-  --border-color-extra-light: #F2F6FC; // 最浅的边框色
+  --border-color-darker: #636466; // 深色边框
+  --border-color-dark: #58585B; // 深色边框
+  --border-color: #4C4D4F; // 常规边框
+  --border-color-light: #414243; // 浅色边框
+  --border-color-lighter: #363637; // 更浅的边框色
+  --border-color-extra-light: #2B2B2C; // 最浅的边框色
   // 边框颜色end
   // 填充色start
-  --fill-base: #F0F2F5; // 常规填充色
-  --fill-darker: #E6E8EB; // 较暗填充色
-  --fill-dark: #EBEDF0; // 深色填充色
-  --fill-light: #F5F7FA; // 浅色填充色
-  --fill-lighter: #FAFAFA; // 更浅的填充色
-  --fill-extra-light: #FAFCFF; // 最浅的填充色
-  --fill-blank: #FFFFFF; // 空白填充色
+  --fill-base: #303030; // 常规填充色
+  --fill-darker: #424243; // 较暗填充色
+  --fill-dark: #39393A; // 深色填充色
+  --fill-light: #262727; // 浅色填充色
+  --fill-lighter: #1D1D1D; // 更浅的填充色
+  --fill-extra-light: #191919; // 最浅的填充色
+  --fill-blank: transparent; // 空白填充色
   // 填充色end
-  --page-background-color: #3b3b3b; // 页面背景色
+  --page-background-color: #141414; // 页面背景色
   --transparent: transparent; // 透明色
   --basic-black: #000000; // 基础黑色
   --basic-white: #FFFFFF; // 基础白色
   --base-background-color: #FFFFFF; // 基础背景色
   --overlay-background-color: #FFFFFF; // 覆盖背景色
+  // 菜单背景色 start
+  --menu-background-color: var(--basic-black);
+  --menu-active-background-color: rgba(0, 0, 0, 0.884);
+  --menu-active-text-color: rgba(0, 0, 0, 0.062);
+  // 菜单背景色 end
+  // boxshadow start
+  --box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, .36), 0px 8px 20px rgba(0, 0, 0, .72);
+  --box-shadow-light: 0px 0px 12px rgba(0, 0, 0, .72);
+  --box-shadow-lighter: 0px 0px 6px rgba(0, 0, 0, .72);
+  --box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, .72), 0px 12px 32px #000000, 0px 8px 16px -8px #000000;
+  // boxshadow end
 }
