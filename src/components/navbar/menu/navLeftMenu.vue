@@ -110,6 +110,7 @@ const toPage = ({ item, key, keyPath }) => {
     v-model:openKeys="openKeys"
     v-model:selectedKeys="selectedKeys"
     :inline-collapsed="collapsed"
+    class="menu-test"
     mode="inline"
     :items="items"
     @click="toPage"
