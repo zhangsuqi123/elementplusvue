@@ -1,9 +1,8 @@
 <script setup>
 import { RouterView, useRoute, useRouter } from 'vue-router'
 import { ref, watchEffect } from 'vue'
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import navLeftMenu from '@/components/navbar/menu/navLeftMenu.vue'
-import themeToogle from '@/components/navbar/components/themeToogle.vue'
+import Header from '@/components/navbar/header/Index.vue'
 
 const collapsed = ref(false)
 
@@ -41,15 +40,7 @@ router.beforeEach((to, from, next) => {
       <navLeftMenu></navLeftMenu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; margin: 10">
-        <menu-unfold-outlined
-          v-if="collapsed"
-          class="trigger"
-          @click="() => (collapsed = !collapsed)"
-        />
-        <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
-        <themeToogle></themeToogle>
-      </a-layout-header>
+      <Header></Header>
       <a-breadcrumb style="margin: 16px 30px 0">
         <a-breadcrumb-item>Home</a-breadcrumb-item>
         <a-breadcrumb-item>List</a-breadcrumb-item>

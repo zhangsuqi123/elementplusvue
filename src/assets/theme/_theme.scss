@@ -2,6 +2,8 @@
 @import '../variables/_light';
 
 @import './menu';
+@import './vxetable';
+@import './card';
 
 * {
   margin: 0;
@@ -45,4 +47,22 @@ body {
 .ant-layout-content {
   background-color: var(--page-background-color);
   color: var(--text-color-regular);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+// 滚动条的背景色
+::-webkit-scrollbar-track {
+  width: 6px;
+  border-radius: 10px;
+  background-color: var(--scrollbar-track-background-color);
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-background-color);
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
 }

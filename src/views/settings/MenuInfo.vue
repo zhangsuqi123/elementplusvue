@@ -18,7 +18,7 @@ const gridOptions = reactive({
   showHeaderOverflow: true,
   showFooterOverflow: true,
   showFooter: true,
-  height: 880,
+  maxHeight: 800,
   loading: false,
   scrollX: {
     enabled: true

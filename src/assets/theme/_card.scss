@@ -1,0 +1,10 @@
+@import '../variables/_dark';
+@import '../variables/_light';
+
+.ant-card {
+  background-color: var(--card-background-color);
+}
+
+.ant-card-head-title {
+  color: var(--text-color-regular);
+}
