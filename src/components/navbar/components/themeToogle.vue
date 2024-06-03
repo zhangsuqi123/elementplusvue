@@ -1,80 +1,63 @@
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 // import { Sunny, Moon } from '@element-plus/icons-vue'
-import { useDark, useToggle } from "@vueuse/core";
-import { useAppConfigStore } from '@/stores/appConfig';
+import { useDark, useToggle } from '@vueuse/core'
+import { useAppConfigStore } from '@/stores/appConfig'
 const { setTheme } = useAppConfigStore()
 
-const theme = localStorage.getItem("theme-appearance") || "dark";
-const toggleDarkModel = ref(theme === "dark");
+const theme = localStorage.getItem('theme-appearance') || 'dark'
+const toggleDarkModel = ref(theme === 'dark')
 
 const isDark = useDark({
-  storageKey: "theme-appearance",
-  selector: "html",
-  attribute: "data-bs-theme",
-  valueDark: "dark",
-  valueLight: "light",
-});
-const toggleDark = useToggle(isDark);
+  storageKey: 'theme-appearance',
+  selector: 'html',
+  attribute: 'data-bs-theme',
+  valueDark: 'dark',
+  valueLight: 'light'
+})
+const toggleDark = useToggle(isDark)
 
 const toggleTheme = (event) => {
-  setTheme(isDark.value? 'light' : 'dark')
-  const x = event.clientX;
-  const y = event.clientY;
-  const endRadius = Math.hypot(
-    Math.max(x, innerWidth - x),
-    Math.max(y, innerHeight - y)
-  );
+  setTheme(isDark.value ? 'light' : 'dark')
+  const x = event.clientX
+  const y = event.clientY
+  const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
 
   // 兼容性处理
   if (!document.startViewTransition) {
-    toggleDark();
-    return;
+    toggleDark()
+    return
   }
   const transition = document.startViewTransition(async () => {
-    toggleDark();
-  });
+    toggleDark()
+  })
 
   transition.ready.then(() => {
-    const clipPath = [
-      `circle(0px at ${x}px ${y}px)`,
-      `circle(${endRadius}px at ${x}px ${y}px)`,
-    ];
+    const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
     document.documentElement.animate(
       {
-        clipPath: isDark.value ? [...clipPath].reverse() : clipPath,
+        clipPath: isDark.value ? [...clipPath].reverse() : clipPath
       },
       {
         duration: 400,
-        easing: "ease-in",
-        pseudoElement: isDark.value
-          ? "::view-transition-old(root)"
-          : "::view-transition-new(root)",
+        easing: 'ease-in',
+        pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)'
       }
-    );
-  });
-};
+    )
+  })
+}
 </script>
 
 <template>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
   <label id="theme-toggle-button">
-    <input
-      type="checkbox"
-      id="toggle"
-      v-model="toggleDarkModel"
-      @click="toggleTheme"
-    />
+    <input type="checkbox" id="toggle" v-model="toggleDarkModel" @click="toggleTheme" />
     <svg
       viewBox="0 0 69.667 44"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g
-        transform="translate(3.5 3.5)"
-        data-name="Component 15 – 1"
-        id="Component_15_1"
-      >
+      <g transform="translate(3.5 3.5)" data-name="Component 15 – 1" id="Component_15_1">
         <g filter="url(#container)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
           <rect
             fill="#83cbd8"
@@ -89,10 +72,7 @@ const toggleTheme = (event) => {
 
         <g transform="translate(2.333 2.333)" id="button">
           <g data-name="sun" id="sun">
-            <g
-              filter="url(#sun-outer)"
-              transform="matrix(1, 0, 0, 1, -5.83, -5.83)"
-            >
+            <g filter="url(#sun-outer)" transform="matrix(1, 0, 0, 1, -5.83, -5.83)">
               <circle
                 fill="#f8e664"
                 transform="translate(5.83 5.83)"
@@ -134,17 +114,8 @@ const toggleTheme = (event) => {
                 id="moon-3"
               ></circle>
             </g>
-            <g
-              fill="#a6cad0"
-              transform="translate(-24.415 -1.009)"
-              id="patches"
-            >
-              <circle
-                transform="translate(43.009 4.496)"
-                r="2"
-                cy="2"
-                cx="2"
-              ></circle>
+            <g fill="#a6cad0" transform="translate(-24.415 -1.009)" id="patches">
+              <circle transform="translate(43.009 4.496)" r="2" cy="2" cx="2"></circle>
               <circle
                 transform="translate(39.366 17.952)"
                 r="2"
@@ -244,7 +215,6 @@ const toggleTheme = (event) => {
 </template>
 
 <style lang="scss">
-
 /* The switch - the box around the slider */
 #theme-toggle-button {
   font-size: 17px;

@@ -3,10 +3,8 @@ let router = [
     title: '首页',
     path: '/',
     components: 'home.vue',
-    meta: {
-      
-    }
+    meta: {}
   }
 ]
 
-export default router;
+export default router

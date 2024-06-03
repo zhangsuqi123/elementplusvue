@@ -2,12 +2,12 @@
 @import '../variables/_light';
 
 // 设置菜单主体的高度
-.ant-layout-has-sider{
+.ant-layout-has-sider {
   display: flex;
   height: 100%;
 }
 // 设置菜单的滚动条
-.ant-layout-sider{
+.ant-layout-sider {
   overflow-y: scroll;
 }
 // 设置菜单滚动条样式
@@ -23,37 +23,36 @@
 .ant-layout-sider:hover::-webkit-scrollbar-thumb {
   background-color: #0003;
   border-radius: 10px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .ant-menu {
   background-color: var(--menu-background-color);
-  color: var(--text-color-regular)
+  color: var(--text-color-regular);
 }
 // 菜单背景色
 .ant-layout-sider {
   background-color: var(--menu-background-color);
 }
 
-.ant-menu-item:not(.ant-menu-item-selected):active{
+.ant-menu-item:not(.ant-menu-item-selected):active {
   background-color: var(--menu-active-background-color);
 }
 
 // 鼠标悬浮菜单的颜色
 .ant-menu-item:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected),
-.ant-menu-submenu-title:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected){
+.ant-menu-submenu-title:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
   color: var(--menu-hover-text-color);
   background-color: var(--menu-hover-background-color);
 }
 
 .ant-menu-item-selected,
 .ant-menu-submenu-title:active,
-.ant-menu-item:not(.ant-menu-item-selected):active{
+.ant-menu-item:not(.ant-menu-item-selected):active {
   background-color: var(--menu-active-background-color) !important;
   color: var(--primary) !important;
 }
 
-
-.ant-menu-root.ant-menu-inline{
+.ant-menu-root.ant-menu-inline {
   border: none;
 }
