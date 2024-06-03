@@ -4,6 +4,8 @@
 @import './menu';
 @import './card';
 @import './vxetable';
+@import './vxetable';
+@import './card';
 
 * {
   margin: 0;
@@ -59,4 +61,21 @@ body {
 
 .ant-breadcrumb li:last-child {
   color: var(--text-color-regular) !important;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+// 滚动条的背景色
+::-webkit-scrollbar-track {
+  width: 6px;
+  border-radius: 10px;
+  background-color: var(--scrollbar-track-background-color);
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-background-color);
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
 }

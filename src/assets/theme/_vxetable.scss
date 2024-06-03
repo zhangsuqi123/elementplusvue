@@ -16,3 +16,6 @@
 .vxe-table--render-wrapper{
   background-color: transparent;
 }
+.vxe-table--render-default .vxe-table--body-wrapper table{
+  background-color: var(--table-background-color);
+}
