@@ -916,6 +916,11 @@
   dependencies:
     vue-demi "*"
 
+"@vxecli/import-unplugin-vue-components@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@vxecli/import-unplugin-vue-components/-/import-unplugin-vue-components-1.0.4.tgz#8b9ca702a894fb4f4f6818a08d94f1b80859e273"
+  integrity sha512-qdcxnd+IfG+kSQkqPUQjSblfAR4TsAtt3EL3rWm1UMcThss72NpRdcWMsuBuZqORYOp81n+F15HqUkEFQ4e29g==
+
 acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
@@ -1227,6 +1232,11 @@ dom-scroll-into-view@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmmirror.com/dom-scroll-into-view/-/dom-scroll-into-view-2.0.1.tgz#0decc8522801fd8d3f1c6ba355a74d382c5f989b"
   integrity sha512-bvVTQe1lfaUr1oFzZX80ce9KLDlZ3iU+XGNE/bz9HnGdklTieqsbmsLHe+rT2XWqopvL0PckkYqN7ksmm5pe3w==
+
+dom-zindex@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/dom-zindex/-/dom-zindex-1.0.4.tgz#c5a21153dc85962c8d4831ea42db898cc536eb26"
+  integrity sha512-PNk7u71TJ1C9Lwjjp5nNuQcVWuECFMmr9kZAwi2UbgWUM7jXdTCe4O4x5bhLUa07jpcZUVA5Du3ho7/FXzS9Ng==
 
 electron-to-chromium@^1.4.668:
   version "1.4.783"
@@ -2441,6 +2451,14 @@ vue@^3.4.21:
     "@vue/server-renderer" "3.4.27"
     "@vue/shared" "3.4.27"
 
+vxe-table@^4.6.17:
+  version "4.6.17"
+  resolved "https://registry.yarnpkg.com/vxe-table/-/vxe-table-4.6.17.tgz#8099e4ae5bee56ee5f3329bb9ca691dcefabbad7"
+  integrity sha512-K9A0qJuV33Xh2NK6L1tXXEXueGyOoRVz7eFvFFpTbLVtm3oCoYl6+BOqD6YTw70R8NKdZZNH+ylmEJug+Qjrrg==
+  dependencies:
+    dom-zindex "^1.0.4"
+    xe-utils "^3.5.26"
+
 warning@^4.0.0:
   version "4.0.3"
   resolved "https://registry.npmmirror.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
@@ -2474,6 +2492,11 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
+
+xe-utils@^3.5.26:
+  version "3.5.26"
+  resolved "https://registry.yarnpkg.com/xe-utils/-/xe-utils-3.5.26.tgz#8b3255cc74c5d251e06cfb7a665ac3ed0931a9f3"
+  integrity sha512-u9R7RqWDumamToEelrCv2nVA2PBJSPPUubvmiMcuHeFxwbYeBsouoi/opejmr7AdPlSj92FifF7IKFzFrczU7w==
 
 xml-name-validator@^4.0.0:
   version "4.0.0"

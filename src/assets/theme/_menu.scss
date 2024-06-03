@@ -12,12 +12,26 @@
 }
 // 设置菜单滚动条样式
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 6px;
+  background-color: transparent;
 }
+
+::-webkit-scrollbar-track {
+  width: 6px;
+  border-radius: 10px;
+}
+
 // 只有鼠标悬浮的时候才展示菜单的滚动条样式
 .ant-layout-sider:hover::-webkit-scrollbar-track {
   width: 6px;
   border-radius: 10px;
+  background-color: #0003;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0003;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
 }
 
 .ant-layout-sider:hover::-webkit-scrollbar-thumb {

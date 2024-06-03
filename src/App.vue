@@ -50,17 +50,17 @@ router.beforeEach((to, from, next) => {
         <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
         <themeToogle></themeToogle>
       </a-layout-header>
-      <a-breadcrumb style="margin: 16px 16px 0">
+      <a-breadcrumb style="margin: 16px 30px 0">
         <a-breadcrumb-item>Home</a-breadcrumb-item>
         <a-breadcrumb-item>List</a-breadcrumb-item>
         <a-breadcrumb-item>App</a-breadcrumb-item>
       </a-breadcrumb>
       <a-layout-content
-        :style="{ margin: '20px 20px 0px', padding: '10px 10px 0px', minHeight: '280px' }"
+        :style="{ margin: '6px 20px 0px', padding: '10px 10px 0px', minHeight: '280px' }"
       >
         <RouterView></RouterView>
       </a-layout-content>
-      <a-layout-footer :style="{ textAlign: 'left', padding: '16px 16px' }">
+      <a-layout-footer :style="{ textAlign: 'left', padding: '16px 30px' }">
         Ant Design ©2018 Created by Ant UED
       </a-layout-footer>
     </a-layout>

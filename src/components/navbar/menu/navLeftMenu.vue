@@ -4,19 +4,21 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 import {
   SettingOutlined,
-  MailOutlined,
   CalendarOutlined,
-  AppstoreOutlined
+  AppstoreOutlined,
+  HomeOutlined
 } from '@ant-design/icons-vue'
 const selectedKeys = ref([])
 const collapsed = ref(false)
 const openKeys = ref([])
 const items = ref([
   {
-    key: '1',
-    icon: () => h(MailOutlined),
-    label: 'Navigation One',
-    title: 'Navigation One'
+    key: 'Home',
+    label: '首页',
+    title: '首页',
+    icon: () => h(HomeOutlined),
+    path: '/'
+    // component: '@/views/settings/MenuInfo.vue'
   },
   {
     key: '2',
