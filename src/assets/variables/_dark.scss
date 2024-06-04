@@ -1,8 +1,8 @@
 [data-bs-theme='dark'] {
   // 文本的颜色start
-  --text-color-primary: #e5eaf3; // 主文本色
-  --text-color-regular: #cfd3dc; // 主文本色
-  --text-color-secondary: #a3a6ad; // 次文本色
+  --text-color-primary: #ffffffd9; // 主文本色
+  --text-color-regular: #e2e5eb; // 主文本色
+  --text-color-secondary: #ffffff73; // 次文本色
   --text-color-placeholder: #8d9095; // 占位文本色
   --text-color-disabled: #6c6e72; // 失效文本色
   // 文本的颜色end
@@ -21,16 +21,16 @@
   --fill-light: #262727; // 浅色填充色
   --fill-lighter: #1d1d1d; // 更浅的填充色
   --fill-extra-light: #191919; // 最浅的填充色
-  --fill-blank: transparent; // 空白填充色
+  --fill-blank: #141414; // 空白填充色
   // 填充色end
-  --page-background-color: #141414; // 页面背景色
+  --page-background-color: #131313a5; // 页面背景色
   --transparent: transparent; // 透明色
   --basic-black: #000000; // 基础黑色
   --basic-white: #ffffff; // 基础白色
   --base-background-color: #ffffff; // 基础背景色
   --overlay-background-color: #ffffff; // 覆盖背景色
   // 菜单背景色 start
-  --menu-background-color: var(--basic-black);
+  --menu-background-color: #111d2c;
   --menu-active-background-color: #ffffff33;
   --menu-active-text-color: #0000000f;
   --menu-hover-background-color: #ffffff33;
@@ -43,4 +43,7 @@
   --box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.72), 0px 12px 32px #000000,
     0px 8px 16px -8px #000000;
   // boxshadow end
+  // 卡片色 start
+  --card-background-color: #ffffff11;
+  // 卡片色 end
 }

@@ -2,6 +2,8 @@
 @import '../variables/_light';
 
 @import './menu';
+@import './card';
+@import './vxetable';
 
 * {
   margin: 0;
@@ -43,6 +45,18 @@ body {
 }
 
 .ant-layout-content {
-  background-color: var(--page-background-color);
+  // background-color: var(--page-background-color);
   color: var(--text-color-regular);
+}
+
+// 面包屑的样式
+.ant-breadcrumb li {
+  color: var(--text-color-secondary);
+}
+.ant-breadcrumb-separator{
+  color: var(--text-color-secondary);
+}
+
+.ant-breadcrumb li:last-child {
+  color: var(--text-color-regular) !important;
 }

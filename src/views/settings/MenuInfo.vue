@@ -31,9 +31,6 @@ const gridOptions = reactive({
   },
   checkboxConfig: {
     labelField: 'id'
-  },
-  footerMethod () {
-    return footerData.value
   }
 })
 let colIndex = 0

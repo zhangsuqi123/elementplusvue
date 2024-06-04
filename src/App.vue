@@ -60,9 +60,9 @@ router.beforeEach((to, from, next) => {
       >
         <RouterView></RouterView>
       </a-layout-content>
-      <a-layout-footer :style="{ textAlign: 'left', padding: '16px 30px' }">
+      <!-- <a-layout-footer :style="{ textAlign: 'left', padding: '16px 30px' }">
         Ant Design ©2018 Created by Ant UED
-      </a-layout-footer>
+      </a-layout-footer> -->
     </a-layout>
   </a-layout>
 </template>

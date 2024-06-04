@@ -1,0 +1,18 @@
+@import '../variables/_dark';
+@import '../variables/_light';
+
+.vxe-table--render-default .vxe-table--body-wrapper table {
+  background-color: #3c3c3c;
+  color: var(--text-color-regular);
+}
+.vxe-table--render-default.border--full .vxe-table--fixed-left-wrapper .vxe-body--column {
+  border-color: #5e5e5e;
+}
+.vxe-table--render-default.border--full .vxe-table--header-wrapper {
+  background-color: #101010;
+  color: var(--text-color-primary);
+}
+
+.vxe-table--render-wrapper{
+  background-color: transparent;
+}
