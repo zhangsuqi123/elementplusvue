@@ -2,10 +2,14 @@
 @import '../variables/_light';
 
 @import './menu';
+<<<<<<< HEAD
 @import './card';
 @import './vxetable';
 @import './vxetable';
+=======
+>>>>>>> 075a0e4 (test1)
 @import './card';
+@import './vxetable';
 
 * {
   margin: 0;
@@ -66,11 +70,8 @@ body {
   width: 6px;
 }
 
-// 滚动条的背景色
-::-webkit-scrollbar-track {
-  width: 6px;
-  border-radius: 10px;
-  background-color: var(--scrollbar-track-background-color);
+.ant-breadcrumb li:last-child {
+  color: var(--text-color-regular) !important;
 }
 
 
