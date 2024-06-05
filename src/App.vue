@@ -2,7 +2,7 @@
 import { RouterView, useRoute, useRouter } from 'vue-router'
 import { ref, watchEffect } from 'vue'
 import navLeftMenu from '@/components/navbar/menu/navLeftMenu.vue'
-import Header from '@/components/navbar/header/Index.vue'
+import Header from '@/components/navbar/header/navIndex.vue'
 
 const collapsed = ref(false)
 
@@ -34,7 +34,6 @@ router.beforeEach((to, from, next) => {
       :trigger="null"
       collapsible
       width="2rem"
-      height="9rem"
     >
       <div class="logo" />
       <navLeftMenu></navLeftMenu>
