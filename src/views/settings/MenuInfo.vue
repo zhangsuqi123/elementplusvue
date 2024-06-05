@@ -2,10 +2,6 @@
   <a-card title="Card title" :bordered="false">
     <vxe-grid ref="gridRef" v-bind="gridOptions"></vxe-grid>
   </a-card>
-  <!-- <el-card>
-    <template #header>Yummy hamburger</template>
-    
-  </el-card> -->
 </template>
 
 <script setup>
@@ -16,7 +12,6 @@ const gridOptions = reactive({
   border: true,
   showOverflow: true,
   showHeaderOverflow: true,
-  showFooterOverflow: true,
   showFooter: true,
   maxHeight: 800,
   loading: false,

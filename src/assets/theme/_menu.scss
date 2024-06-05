@@ -7,23 +7,24 @@
   height: 100%;
 }
 // 设置菜单的滚动条
-.menu-test {
-  overflow-y: auto;
+.ant-menu-root {
+  height: 100vh;
+  overflow: auto !important;
 }
 // 设置菜单滚动条样式
-.menu-test::-webkit-scrollbar {
+.ant-menu-root:hover::-webkit-scrollbar {
   width: 6px;
 }
 
 // 只有鼠标悬浮的时候才展示菜单的滚动条样式
-.menu-test:hover::-webkit-scrollbar-track {
+.ant-menu-root:hover::-webkit-scrollbar-track {
   width: 6px;
   border-radius: 10px;
   background-color: var(--scrollbar-track-background-color);;
 }
 
 
-.menu-test:hover::-webkit-scrollbar-thumb {
+.ant-menu-root:hover::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb-background-color);
   border-radius: 10px;
   transition: all 0.2s ease-in-out;

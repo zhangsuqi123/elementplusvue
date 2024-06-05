@@ -9,7 +9,7 @@
   border-color: #5e5e5e;
 }
 .vxe-table--render-default.border--full .vxe-table--header-wrapper {
-  background-color: #101010;
+  background-color: var(--title-background-color);
   color: var(--text-color-primary);
 }
 
