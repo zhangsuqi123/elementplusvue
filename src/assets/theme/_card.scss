@@ -3,6 +3,7 @@
 
 .ant-card {
   background-color: var(--card-background-color);
+  height: calc(100vh - 2rem);
 }
 
 .ant-card-head-title {

@@ -1,13 +1,13 @@
 <template>
-  <a-card title="Card title" :bordered="false">
-    <vxe-grid ref="gridRef" v-bind="gridOptions"></vxe-grid>
-  </a-card>
+  <CardTable title="测试表格" :table-config="gridOptions" :table-columns="tableColumns"></CardTable>
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue'
+import CardTable from '@/components/vxetable/CardTable.vue'
 const gridRef = ref()
 const footerData = ref([])
+const tableColumns = ref([])
 const gridOptions = reactive({
   border: true,
   showOverflow: true,
@@ -49,7 +49,7 @@ const findColumnList = (size) => {
         if (key < 2) {
           config.fixed = 'left'
         }
-        columns.push(config)
+        tableColumns.value.push(config)
       }
       resolve(columns)
     }, 250)
@@ -73,13 +73,13 @@ const findDataList = (size) => {
   })
 }
 const init = async () => {
-  let tableColumn = []
   gridOptions.loading = true
+  gridOptions.tableColumn = []
   await Promise.all([
     findColumnList(50).then((columns) => {
       const $grid = gridRef.value
       if ($grid) {
-        tableColumn = columns
+        gridOptions.tableColumn = columns
         $grid.loadColumn(columns)
       }
     }),
@@ -94,7 +94,7 @@ const init = async () => {
   gridOptions.loading = false
   // 计算表尾数据
   const footList = [[]]
-  tableColumn.forEach((column, index) => {
+  gridOptions.tableColumn.forEach((column, index) => {
     footList[0].push(index === 0 ? '合计' : `${index}`)
   })
   footerData.value = footList

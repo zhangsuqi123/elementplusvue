@@ -48,9 +48,9 @@ router.beforeEach((to, from, next) => {
 
 <style>
 .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 16px;
+  font-size: .18rem;
+  line-height: .6rem;
+  padding: 0 .16rem;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -61,8 +61,9 @@ router.beforeEach((to, from, next) => {
 
 .logo {
   height: 64px;
-  background: rgba(255, 0, 0, 0.3);
-  margin: 16px;
+  background: #ff00004d;
+  margin: .16rem;
+  min-height: 64px;
 }
 
 .site-layout .site-layout-background {
