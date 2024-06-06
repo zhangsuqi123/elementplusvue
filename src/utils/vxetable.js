@@ -37,14 +37,14 @@ import {
   // VxeTextarea,
   VxeButton,
   // VxeButtonGroup,
-  VxeModal,
+  VxeModal
   // VxeDrawer,
   // VxeList,
   // VxePulldown
 } from 'vxe-table'
-  // ...
+// ...
 // 导入主题变量，也可以重写主题变量
-import 'vxe-table/styles/cssvar.scss';
+import 'vxe-table/styles/cssvar.scss'
 import 'vxe-table/lib/style.css'
 // 导入默认的语言
 //   import zhCN from 'vxe-table/es/locale/lang/zh-CN'
@@ -54,7 +54,7 @@ import 'vxe-table/lib/style.css'
 //     i18n: (key, args) => XEUtils.toFormatString(XEUtils.get(zhCN, key), args)
 //   })
 
-export function LazyVxeUITable (app) {
+export function LazyVxeUITable(app) {
   // 可选表格模块
   // app.use(VxeTableFilterModule)
   // app.use(VxeTableEditModule)

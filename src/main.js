@@ -18,10 +18,7 @@ import router from '@/router'
 import il8n from '@/il8n'
 
 // 使用pinia
-app.use(createPinia())
-.use(router)
-.use(il8n)
-.use(plugin)
+app.use(createPinia()).use(router).use(il8n).use(plugin)
 import '@/libs/flexible'
 
 app.mount('#app')

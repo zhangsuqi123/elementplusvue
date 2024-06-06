@@ -53,7 +53,7 @@ body {
 .ant-breadcrumb li {
   color: var(--text-color-secondary);
 }
-.ant-breadcrumb-separator{
+.ant-breadcrumb-separator {
   color: var(--text-color-secondary);
 }
 
@@ -67,7 +67,6 @@ body {
 .ant-breadcrumb li:last-child {
   color: var(--text-color-regular) !important;
 }
-
 
 ::-webkit-scrollbar-thumb:not(.ant-menu-root) {
   background-color: var(--scrollbar-thumb-background-color);

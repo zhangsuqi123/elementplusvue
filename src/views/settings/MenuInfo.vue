@@ -31,7 +31,7 @@ const gridOptions = reactive({
 let colIndex = 0
 let rowIndex = 1
 const findColumnList = (size) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       const columns = []
       for (let index = 0; index < size; index++) {
@@ -56,7 +56,7 @@ const findColumnList = (size) => {
   })
 }
 const findDataList = (size) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       const list = []
       for (let index = 0; index < size; index++) {
@@ -76,14 +76,14 @@ const init = async () => {
   let tableColumn = []
   gridOptions.loading = true
   await Promise.all([
-    findColumnList(50).then(columns => {
+    findColumnList(50).then((columns) => {
       const $grid = gridRef.value
       if ($grid) {
         tableColumn = columns
         $grid.loadColumn(columns)
       }
     }),
-    findDataList(40).then(data => {
+    findDataList(40).then((data) => {
       const $grid = gridRef.value
       if ($grid) {
         $grid.loadData(data)

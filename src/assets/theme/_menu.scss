@@ -20,9 +20,8 @@
 .ant-menu-root:hover::-webkit-scrollbar-track {
   width: 6px;
   border-radius: 10px;
-  background-color: var(--scrollbar-track-background-color);;
+  background-color: var(--scrollbar-track-background-color);
 }
-
 
 .ant-menu-root:hover::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb-background-color);
