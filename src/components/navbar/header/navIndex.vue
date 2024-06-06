@@ -2,15 +2,17 @@
 <script setup>
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import themeToogle from '@/components/navbar/components/themeToogle.vue'
+import { useAppConfigStore } from '@/stores/appConfig'
+const { $state, setMenuCollapsed } = useAppConfigStore()
 </script>
 <template>
-  <a-layout-header style="background: #fff; margin: 10">
+  <a-layout-header style="background: #fff; margin: 0">
     <menu-unfold-outlined
-      v-if="collapsed"
+      v-if="$state.collapsed"
       class="trigger"
-      @click="() => (collapsed = !collapsed)"
+      @click="setMenuCollapsed(false)"
     />
-    <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+    <menu-fold-outlined v-else class="trigger" @click="setMenuCollapsed(true)" />
     <themeToogle></themeToogle>
   </a-layout-header>
 </template>

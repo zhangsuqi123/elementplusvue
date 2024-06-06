@@ -23,7 +23,7 @@ export const useAppConfigStore = defineStore('appConfig', () => {
   }
 
   // 定义菜单的展开状态
-  const collapsed = ref(true)
+  const collapsed = ref(false)
 
   // 设置菜单的展开状态
   const setMenuCollapsed = (value) => {

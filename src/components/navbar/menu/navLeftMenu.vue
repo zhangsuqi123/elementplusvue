@@ -1,6 +1,8 @@
 <script setup>
 import { h, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAppConfigStore } from '@/stores/appConfig'
+const { $state } = useAppConfigStore()
 const router = useRouter()
 import {
   SettingOutlined,
@@ -9,7 +11,6 @@ import {
   HomeOutlined
 } from '@ant-design/icons-vue'
 const selectedKeys = ref([])
-const collapsed = ref(false)
 const openKeys = ref([])
 const items = ref([
   {
@@ -99,20 +100,28 @@ const items = ref([
     ]
   }
 ])
-const toPage = ({ item, key, keyPath }) => {
-  console.log(item, key, keyPath)
+const toPage = ({ item, keyPath }) => {
   selectedKeys.value = keyPath
   router.push(item.path)
 }
 </script>
 <template>
-  <a-menu
-    v-model:openKeys="openKeys"
-    v-model:selectedKeys="selectedKeys"
-    :inline-collapsed="collapsed"
-    class="menu-test"
-    mode="inline"
-    :items="items"
-    @click="toPage"
-  />
+  <a-layout-sider
+    v-model:collapsed="$state.collapsed"
+    theme="light"
+    :trigger="null"
+    collapsible
+    width="2rem"
+  >
+    <div class="logo" />
+    <a-menu
+      v-model:openKeys="openKeys"
+      v-model:selectedKeys="selectedKeys"
+      :inline-collapsed="$state.collapsed"
+      class="menu-test"
+      mode="inline"
+      :items="items"
+      @click="toPage"
+    />
+  </a-layout-sider>
 </template>

@@ -4,8 +4,6 @@ import { ref, watchEffect } from 'vue'
 import navLeftMenu from '@/components/navbar/menu/navLeftMenu.vue'
 import Header from '@/components/navbar/header/navIndex.vue'
 
-const collapsed = ref(false)
-
 // 获取当前路由
 const route = useRoute()
 const router = useRouter()
@@ -28,16 +26,7 @@ router.beforeEach((to, from, next) => {
 <template>
   <RouterView v-if="isFullScreen"></RouterView>
   <a-layout v-else>
-    <a-layout-sider
-      v-model:collapsed="collapsed"
-      theme="light"
-      :trigger="null"
-      collapsible
-      width="2rem"
-    >
-      <div class="logo" />
-      <navLeftMenu></navLeftMenu>
-    </a-layout-sider>
+    <navLeftMenu></navLeftMenu>
     <a-layout>
       <Header></Header>
       <a-breadcrumb style="margin: 16px 30px 0">
