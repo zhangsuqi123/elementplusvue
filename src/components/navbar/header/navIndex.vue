@@ -6,7 +6,7 @@ import { useAppConfigStore } from '@/stores/appConfig'
 const { $state, setMenuCollapsed } = useAppConfigStore()
 </script>
 <template>
-  <a-layout-header style="background: #fff; margin: 0">
+  <a-layout-header style="background: #fff; margin: 0; display: flex;justify-content: space-between;">
     <menu-unfold-outlined
       v-if="$state.collapsed"
       class="trigger"
