@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { login } from '@/api/app';
 // import { useCounterStore } from '@/stores/counter';
 
 // import { useAppConfigStore } from '@/stores/appConfig';
@@ -20,6 +21,7 @@ const code = ref(`
 </script>
 
 <template>
+  <el-button @click="login">发起请求</el-button>
   <a-card :bordered="false" style="width: 300px">
     <p><span style="color: red">Admin</span>，下午好！欢迎回来！</p>
   </a-card>

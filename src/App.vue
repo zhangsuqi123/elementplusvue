@@ -15,6 +15,7 @@ const isFullScreen = ref(route.meta.isFullScreen)
 watchEffect(() => {
   isFullScreen.value = route.meta.isFullScreen
 })
+console.log(import.meta.env.VITE_BASE_URL)
 
 // 使用路由导航守卫提前处理 isFullScreen 状态
 router.beforeEach((to, from, next) => {

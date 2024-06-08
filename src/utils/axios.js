@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const instance = axios.create({
   // 可以在这里设置基础的axios配置，例如baseURL，timeout等
-  baseURL: import.meta.env.BASE_URL,
-  timeout: 1000
+  baseURL: '/api/',
+  timeout: 1000 * 5
 })
 
 // 请求拦截器

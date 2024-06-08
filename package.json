@@ -17,6 +17,7 @@
     "@vxecli/import-unplugin-vue-components": "^1.0.4",
     "ant-design-vue": "4.x",
     "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "element-plus": "^2.7.3",
     "pinia": "^2.1.7",
     "prismjs": "^1.29.0",
