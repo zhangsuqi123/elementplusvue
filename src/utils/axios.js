@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import { message } from 'ant-design-vue';
 
 const instance = axios.create({
   // 可以在这里设置基础的axios配置，例如baseURL，timeout等
@@ -25,11 +26,18 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   (response) => {
-    // 对响应数据做点什么
-    return response.data
+    const {data} = response;
+    if(data.message) {
+      message.success(data.message);
+    }
+
+    return data
   },
   (error) => {
-    // 对响应错误做点什么
+    const {data} = error;
+    if(data?.message || error.message) {
+      message.error(data?.message || error.message);
+    }
     return Promise.reject(error)
   }
 )

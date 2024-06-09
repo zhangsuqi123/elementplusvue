@@ -16,7 +16,7 @@
       <a-button type="primary" danger @click="del(row)" size="small">删除</a-button>
     </template>
   </CardTable>
-  <a-modal v-model:open="modal2Visible" title="添加菜单" :width="800" centered :footer="null">
+  <a-modal v-model:open="modal2Visible" title="添加菜单" :width="800" centered :footer="null" @cancel="cancel">
     <a-form
       ref="formRef"
       name="advanced_search"
@@ -222,13 +222,14 @@ const getData = () => {
 
 // 点击修改按钮的事件
 const edit = (row) => {
+  type.value = 'edit'
   let rowData = JSON.parse(JSON.stringify(row))
   delete rowData._X_ROW_KEY
   rowData.show = Boolean(rowData.show)
-  oldMenuInfo.value = rowData;
-  menuInfo.value = oldMenuInfo.value;
+  // 对处理后的进行深浅拷贝保证不是一个数据  不然后续调用会一直更改
+  oldMenuInfo.value = JSON.parse(JSON.stringify(rowData));
+  menuInfo.value = rowData;
   modal2Visible.value = true;
-  type.value = 'edit'
 }
 
 // 点击删除按钮的事件
@@ -250,13 +251,41 @@ const del = (row) => {
 
 // 点击重置按钮把数据给重置
 const reset = () => {
-  console.log(oldMenuInfo.value);
-  // menuInfo.value = {...oldMenuInfo.value}
-  // console.log(menuInfo.value)
+  if(type.value === 'add'){
+    menuInfo.value = {
+      menuname: '',
+      id: '',
+      icon: '',
+      route: '',
+      url: '',
+      component: '',
+      types: 'P',
+      href: '',
+      show: true,
+      enname: ''
+    }
+  }else{
+    menuInfo.value = oldMenuInfo.value
+  }
 }
 const pageChange = ({currentPage, pageSize}) => {
   pagerConfig.value.pageSize = pageSize;
   pagerConfig.value.currentPage = currentPage;
   getData()
+}
+
+const cancel = () => {
+  menuInfo.value = {
+    menuname: '',
+    id: '',
+    icon: '',
+    route: '',
+    url: '',
+    component: '',
+    types: 'P',
+    href: '',
+    show: true,
+    enname: ''
+  }
 }
 </script>
