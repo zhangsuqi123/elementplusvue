@@ -16,7 +16,6 @@ const envFiles = {
 };
 
 dotenv.config({ path: envFiles[process.env.NODE_ENV] });
-console.log(process.env.VITE_BASE_URL, '///////')
 
 // https://vitejs.dev/config/
 export default defineConfig({

@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { ref, defineProps, computed } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
+const { emit } = getCurrentInstance();
 const gridRef = ref()
 
 const props = defineProps({
@@ -23,25 +24,64 @@ const props = defineProps({
   height: {
     type: Number,
     default: 0
+  },
+  pagerConfig: {
+    type: Object,
+    default: () => ({})
+  },
+  tableTotal: {
+    type:Number,
+    default: 0
   }
 })
 
-console.log(props.title)
+const getSlot = () => {
+  let arr = [];
+  props.tableColumns.forEach(item => {
+    if(item.slots){
+      arr.push(Object.values(item.slots)[0])
+    }
+  })
+  return arr;
+}
 
-const autoHeight = computed(() => {
-  console.log(document.body.offsetHeight);
-  return document.body.offsetHeight;
-})
+const pagerConfigs = ref(props.pagerConfig)
+
+const handlePageChange = (pagerConfig) => {
+  emit('pager-change', pagerConfig)
+}
+
 </script>
 <template>
-  <a-card :title="props.title" :bordered="false">
+  <a-card :bordered="false">
+    <a-card-meta>
+      <template #description>
+        <slot name="header">
+          <span>{{ props.title }}</span>
+        </slot>
+      </template>
+    </a-card-meta>
     <vxe-grid
       ref="gridRef"
       :columns="props.tableColumns"
       :data="props.tableData"
       v-bind="props.tableConfig"
-      :height="autoHeight"
+      :height="500"
       :auto-resize="true"
-    ></vxe-grid>
+    >
+      <template v-for="(item, index) in getSlot()" :key="index" #[item]="row">
+        <slot :name="item" v-bind="row"></slot>
+      </template>
+      <template #pager>
+        <!--使用 pager 插槽-->
+        <vxe-pager
+          :layouts="['PrevJump', 'PrevPage', 'Number', 'NextPage', 'NextJump', 'Sizes', 'FullJump', 'Total']"
+          v-model:current-page="pagerConfigs.currentPage"
+          v-model:page-size="pagerConfigs.pageSize"
+          :total="tableTotal"
+          @page-change="handlePageChange">
+        </vxe-pager>
+      </template>
+    </vxe-grid>
   </a-card>
 </template>

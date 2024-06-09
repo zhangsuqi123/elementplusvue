@@ -19,3 +19,21 @@
 .vxe-table--render-default .vxe-table--body-wrapper table {
   background-color: var(--table-background-color);
 }
+
+// 设置表格滚动条样式
+.vxe-table--render-default::-webkit-scrollbar {
+  width: 6px;
+}
+
+// 只有鼠标悬浮的时候才展示表格的滚动条样式
+.vxe-table--render-default::-webkit-scrollbar-track {
+  width: 6px;
+  border-radius: 10px;
+  background-color: var(--transparent);
+}
+
+.vxe-table--render-default::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-background-color);
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}

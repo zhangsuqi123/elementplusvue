@@ -3,7 +3,7 @@
 
 .ant-card {
   background-color: var(--card-background-color);
-  height: calc(100vh - 2rem);
+  height: 800px;
 }
 
 .ant-card-head-title {
@@ -12,4 +12,13 @@
 
 .ant-card-head-title {
   color: var(--text-color-primary);
+}
+
+.ant-card-body {
+  padding: 15px 30px 30px;
+}
+
+.ant-card-meta{
+  padding-top: 15px;
+  padding-bottom: 20px;
 }

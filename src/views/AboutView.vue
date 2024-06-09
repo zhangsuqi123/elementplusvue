@@ -1,175 +1,160 @@
-<script setup>
-// import HelloWorld from "./components/HelloWorld.vue";
-import { ref } from 'vue'
-import { useDark, useToggle } from '@vueuse/core'
-
-const theme = localStorage.getItem('theme-appearance') || 'light'
-const toggleDarkModel = ref(theme === 'dark')
-
-const isDark = useDark({
-  storageKey: 'theme-appearance',
-  selector: 'html',
-  attribute: 'data-bs-theme',
-  valueDark: 'dark',
-  valueLight: 'light'
-})
-const toggleDark = useToggle(isDark)
-
-const toggleTheme = (event) => {
-  const x = event.clientX
-  const y = event.clientY
-  const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
-
-  // 兼容性处理
-  if (!document.startViewTransition) {
-    toggleDark()
-    return
-  }
-  const transition = document.startViewTransition(async () => {
-    toggleDark()
-  })
-
-  transition.ready.then(() => {
-    const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
-    document.documentElement.animate(
-      {
-        clipPath: isDark.value ? [...clipPath].reverse() : clipPath
-      },
-      {
-        duration: 400,
-        easing: 'ease-in',
-        pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)'
-      }
-    )
-  })
-}
-</script>
-
 <template>
-  <label id="theme-toggle-button">
-    <input type="checkbox" id="toggle" v-model="toggleDarkModel" @click="toggleTheme" />
-    点击切换主题
-  </label>
-  <div>123123133233</div>
+  <div>
+    <vxe-grid ref="xGrid" class="my-grid88" v-bind="gridOptions">
+      <template #toolbar_buttons>
+        <button>按钮</button>
+        <input type="text"/>
+        <vxe-button>按钮1</vxe-button>
+        <vxe-button>按钮2</vxe-button>
+      </template>
+
+      <template #name_header>
+        <div class="first-col">
+          <div class="first-col-top">名称</div>
+          <div class="first-col-bottom">类型</div>
+        </div>
+      </template>
+
+      <template #default_name="{ row }">
+        <span style="color: red;">{{ row.name }}</span>,
+        <button @click="showDetailEvent(row)">弹框</button>
+      </template>
+
+      <template #default_sex="{ row }">
+        <a class="link" href="https://x-extends.github.io/vxe-table/">我是超链接：{{ row.sex }}</a>
+      </template>
+
+      <template #filter_sex="{ column, $panel }">
+        <div v-for="(option, index) in column.filters" :key="index">
+          <input type="type" v-model="option.data" @input="changeFilterEvent($event, option, $panel)" />
+        </div>
+      </template>
+
+      <template #header_sex="{ column }">
+        <span>
+          <i>@</i>
+          <span style="color: red;" @click="headerClickEvent">{{ column.title }}</span>
+        </span>
+      </template>
+
+      <template #edit_sex="{ row }">
+        <input type="text" v-model="row.sex" />
+      </template>
+
+      <template #default_address="{ row }">
+        <span style="color: blue" @click="addressClickEvent(row)">{{ row.address }}</span>
+      </template>
+
+      <template #default_html2="{ row }">
+        <span v-html="row.html2"></span>
+      </template>
+
+      <template #default_img1="{ row }">
+        <img v-if="row.img1" :src="row.img1" style="height: 40px;"/>
+        <span v-else>无</span>
+      </template>
+    </vxe-grid>
+
+    <vxe-modal v-model="showDetails" title="查看详情" width="800" height="400" resize>
+      <template #default>
+        <div v-if="selectRow">{{ selectRow.address }}</div>
+      </template>
+    </vxe-modal>
+  </div>
 </template>
 
-<style lang="scss">
-[data-bs-theme='light'] {
-  body {
-    background-color: #ffffff;
-  }
+<script setup>
+import { ref, reactive, nextTick } from 'vue'
+import { VXETable } from 'vxe-table'
+const showDetails = ref(false)
+const selectRow = ref(null)
+const xGrid = ref()
+const gridOptions = reactive({
+  border: true,
+  showOverflow: true,
+  loading: false,
+  height: 400,
+  columnConfig: {
+    resizable: true
+  },
+  toolbarConfig: {
+    custom: true,
+    slots: {
+      buttons: 'toolbar_buttons'
+    }
+  },
+  scrollY: {
+    enabled: true
+  },
+  editConfig: {
+    trigger: 'click',
+    mode: 'cell'
+  },
+  columns: [
+    { type: 'seq', width: 50 },
+    { field: 'name', title: 'Name', width: 200, resizable: false, slots: { header: 'name_header', default: 'default_name' } },
+    {
+      field: 'sex',
+      title: 'Sex',
+      showHeaderOverflow: true,
+      filters: [{ data: '' }],
+      filterMethod: ({ option, row }) => {
+        return row.sex === option.data
+      },
+      editRender: {},
+      slots: {
+        default: 'default_sex',
+        header: 'header_sex',
+        filter: 'filter_sex',
+        edit: 'edit_sex'
+      }
+    },
+    { field: 'address', title: 'Address', slots: { default: 'default_address' } },
+    { field: 'html2', title: 'Html片段', slots: { default: 'default_html2' } },
+    { field: 'img1', title: '图片路径', slots: { default: 'default_img1' } }
+  ]
+})
+const showDetailEvent = (row) => {
+  selectRow.value = row
+  showDetails.value = true
 }
-
-[data-bs-theme='dark'] {
-  body {
-    background-color: #000;
-    color: #fff;
-  }
+const headerClickEvent = () => {
+  VXETable.modal.alert('头部点击事件')
 }
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+const addressClickEvent = (row) => {
+  VXETable.modal.alert(`address点击事件：${row.address}`)
 }
-
-::view-transition-old(root) {
-  z-index: 1;
+const changeFilterEvent = (event, option, $panel) => {
+  $panel.changeOption(event, !!option.data, option)
 }
-
-::view-transition-new(root) {
-  z-index: 2147483646;
+const mockList = (size) => {
+  return new Promise(resolve => {
+    const list = []
+    for (let index = 0; index < size; index++) {
+      list.push({
+        name: `名称${index}`,
+        sex: '0',
+        num: 123,
+        age: 18,
+        num2: 234,
+        rate: 3,
+        img1: 'https://5b0988e595225.cdn.sohucs.com/images/20181014/dce7cdaa130440e8b609fad083877ef3.gif',
+        html2: `<span style="color:red">HTML标签${index}</span>`,
+        address: `test abc系列${index}`
+      })
+    }
+    resolve(list)
+  })
 }
-
-[data-bs-theme='dark']::view-transition-old(root) {
-  z-index: 2147483646;
-}
-
-[data-bs-theme='dark']::view-transition-new(root) {
-  z-index: 1;
-}
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-
-/* The switch - the box around the slider */
-#theme-toggle-button {
-  font-size: 17px;
-  position: relative;
-  display: inline-block;
-  width: 7em;
-  cursor: pointer;
-}
-
-/* Hide default HTML checkbox */
-#toggle {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-#container,
-#patches,
-#stars,
-#button,
-#sun,
-#moon,
-#cloud {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.25s;
-}
-
-/* night sky background */
-#toggle:checked + svg #container {
-  fill: #2b4360;
-}
-
-/* move button to right when checked */
-#toggle:checked + svg #button {
-  transform: translate(28px, 2.333px);
-}
-
-/* show/hide sun and moon based on checkbox state */
-#sun {
-  opacity: 1;
-}
-
-#toggle:checked + svg #sun {
-  opacity: 0;
-}
-
-#moon {
-  opacity: 0;
-}
-
-#toggle:checked + svg #moon {
-  opacity: 1;
-}
-
-/* show or hide background items on checkbox state */
-#cloud {
-  opacity: 1;
-}
-
-#toggle:checked + svg #cloud {
-  opacity: 0;
-}
-
-#stars {
-  opacity: 0;
-}
-
-#toggle:checked + svg #stars {
-  opacity: 1;
-}
-</style>
+nextTick(() => {
+  gridOptions.loading = true
+  // 使用函数式加载
+  mockList(400).then(data => {
+    gridOptions.loading = false
+    const $grid = xGrid.value
+    if ($grid) {
+      $grid.loadData(data)
+    }
+  })
+})
+</script>

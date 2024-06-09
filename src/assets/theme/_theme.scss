@@ -6,15 +6,22 @@
 @import './vxetable';
 @import './header';
 
-* {
-  margin: 0;
-  padding: 0;
-}
+// * {
+//   margin: 0;
+//   padding: 0;
+// }
 
 html,
 body {
-  height: 100vh;
-  font-size: 100px
+  margin: 0;
+  padding: 0;
+  // height: 100vh;
+  font-size: 100px;
+  overflow: hidden;
+}
+
+#app{
+  // height: calc(100vh - .6rem);
 }
 
 body {
@@ -25,7 +32,25 @@ body {
 
 /** 主体内容的样式 */
 .ant-layout-content {
-  overflow-y: scroll;
+  overflow-y: auto;
+  height: calc(100vh - 1.4rem);
+}
+// 设置主体内容滚动条样式
+.ant-layout-content:hover::-webkit-scrollbar {
+  width: 6px;
+}
+
+// 只有鼠标悬浮的时候才展示主体内容的滚动条样式
+.ant-layout-content:hover::-webkit-scrollbar-track {
+  width: 6px;
+  border-radius: 10px;
+  background-color: var(--transparent);
+}
+
+.ant-layout-content:hover::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-background-color);
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
 }
 /** 主体内容的样式 */
 

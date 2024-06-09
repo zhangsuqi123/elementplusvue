@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
         <a-breadcrumb-item>App</a-breadcrumb-item>
       </a-breadcrumb>
       <a-layout-content
-        :style="{ margin: '6px 20px 0px', padding: '10px 10px 0px', minHeight: '280px' }"
+        :style="{ margin: '6px 20px 0px', padding: '10px 10px 0px' }"
       >
         <RouterView></RouterView>
       </a-layout-content>
@@ -61,10 +61,10 @@ router.beforeEach((to, from, next) => {
 }
 
 .logo {
-  height: 64px;
+  height: .6rem;
   background: #ff00004d;
   margin: .16rem;
-  min-height: 64px;
+  min-height: .6rem;
 }
 
 .site-layout .site-layout-background {
