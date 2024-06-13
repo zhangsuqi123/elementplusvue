@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { h } from 'vue'
 import { SettingOutlined } from '@ant-design/icons-vue'
 import HomeView from '../views/HomeView.vue'
+import { getCookie } from '@/libs/cookie'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,12 @@ const router = createRouter({
       ]
     }
   ]
+})
+
+router.beforeEach((to, from) => {
+  if(to.name !== 'Login' && !getCookie("userInfo")){
+    return {name: 'Login'}
+  }
 })
 
 export default router

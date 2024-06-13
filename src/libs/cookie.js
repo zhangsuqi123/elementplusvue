@@ -1,5 +1,5 @@
 // 设置 cookie 函数
-function setCookie(name, value, days) {
+export function setCookie(name, value, days) {
   let expires = ''
   if (days) {
     const date = new Date()
@@ -10,7 +10,7 @@ function setCookie(name, value, days) {
 }
 
 // 获取 cookie 函数
-function getCookie(name) {
+export function getCookie(name) {
   const nameEQ = name + '='
   const ca = document.cookie.split(';')
   for (let i = 0; i < ca.length; i++) {
@@ -22,12 +22,7 @@ function getCookie(name) {
 }
 
 // 删除 cookie 函数
-function eraseCookie(name) {
+export function eraseCookie(name) {
   document.cookie = name + '=; Max-Age=-99999999;'
 }
 
-// 示例用法
-setCookie('testCookie', 'testValue', 7) // 设置一个名为 'testCookie' 的 cookie，值为 'testValue'，有效期为 7 天
-const cookieValue = getCookie('testCookie') // 获取名为 'testCookie' 的 cookie 的值
-eraseCookie('testCookie') // 删除名为 'testCookie' 的 cookie
-console.log(cookieValue)

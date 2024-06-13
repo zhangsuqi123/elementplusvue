@@ -1,8 +1,15 @@
 // import Vue from 'vue';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import { LazyVxeUITable } from '@/utils/vxetable'
+import { LazyVxeUITable } from '@/utils/vxetable';
+import { globalCookiesConfig } from 'vue3-cookies';
+globalCookiesConfig({
+  expireTimes: '7d',
+  path: "/",
+  domain: "",
+  secure: true,
+  sameSite: "None"
+});
 
-// console.log(Vue);
 export default {
   install(Vue) {
     LazyVxeUITable(Vue)

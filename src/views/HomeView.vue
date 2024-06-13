@@ -1,6 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { login } from '@/api/app';
+import { useCookies } from "vue3-cookies";
+const {cookies} = useCookies();
+console.log(cookies.set('userInfo', JSON.stringify({a: 5})));
+console.log(cookies.get('userInfo'));
 // import { useCounterStore } from '@/stores/counter';
 
 // import { useAppConfigStore } from '@/stores/appConfig';
