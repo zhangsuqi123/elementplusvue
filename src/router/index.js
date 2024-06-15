@@ -44,15 +44,21 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.name === 'Login') ({name:'Login'});
-  if(!getCookie("userInfo")) ({name: 'Login'})
-  next()
-  // console.log(to.name !== 'Login', !getCookie("userInfo"))
-  // if(to.name !== 'Login' && !getCookie("userInfo")){
-  //   next()
-  // }else{
-  //   return {name: 'Login'}
-  // }
+  // 如果目标路由是 'Login'
+  if (to.name === 'Login') {
+    next();
+    return;
+  }
+
+  // 获取 token
+  const token = getCookie("token");
+
+  // 如果没有 token，重定向到登录页面
+  if (!token) {
+    next({ name: 'Login' });
+  } else {
+    next(); // 继续导航
+  }
 })
 
 export default router
