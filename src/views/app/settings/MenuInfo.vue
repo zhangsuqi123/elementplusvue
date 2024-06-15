@@ -1,6 +1,6 @@
 <template>
   <CardTable
-    title="测试表格"
+    title="菜单信息"
     :table-config="gridOptions"
     :table-columns="tableColumns"
     :table-data="tableData"

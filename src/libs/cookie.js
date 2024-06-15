@@ -1,5 +1,5 @@
 // 设置 cookie 函数
-export function setCookie(name, value, days) {
+export function setCookie(name, value, days = 7) {
   let expires = ''
   if (days) {
     const date = new Date()

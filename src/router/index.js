@@ -36,17 +36,23 @@ const router = createRouter({
           label: '菜单信息',
           title: '菜单信息',
           path: '/settings/menu-info',
-          component: () => import('@/views/settings/MenuInfo.vue')
+          component: () => import('@/views/app/settings/MenuInfo.vue')
         }
       ]
     }
   ]
 })
 
-router.beforeEach((to, from) => {
-  if(to.name !== 'Login' && !getCookie("userInfo")){
-    return {name: 'Login'}
-  }
+router.beforeEach((to, from, next) => {
+  if(to.name === 'Login') ({name:'Login'});
+  if(!getCookie("userInfo")) ({name: 'Login'})
+  next()
+  // console.log(to.name !== 'Login', !getCookie("userInfo"))
+  // if(to.name !== 'Login' && !getCookie("userInfo")){
+  //   next()
+  // }else{
+  //   return {name: 'Login'}
+  // }
 })
 
 export default router

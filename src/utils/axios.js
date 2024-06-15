@@ -4,7 +4,7 @@ import { message } from 'ant-design-vue';
 const instance = axios.create({
   // 可以在这里设置基础的axios配置，例如baseURL，timeout等
   baseURL: '/api/',
-  timeout: 1000 * 5
+  timeout: 1000 * 60 * 30
 })
 
 // 请求拦截器
@@ -34,9 +34,10 @@ instance.interceptors.response.use(
     return data
   },
   (error) => {
-    const {data} = error;
-    if(data?.message || error.message) {
-      message.error(data?.message || error.message);
+    const {response} = error;
+    console.log(response)
+    if(response?.data.message || error.message) {
+      message.error(response?.data.message || error.message);
     }
     return Promise.reject(error)
   }
