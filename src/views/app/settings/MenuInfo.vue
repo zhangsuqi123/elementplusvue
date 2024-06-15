@@ -12,7 +12,7 @@
       <a-button
         type="primary"
         @click="
-          modal2Visible = true
+          modal2Visible = true;
           type = 'add'
         "
         >添加菜单</a-button
