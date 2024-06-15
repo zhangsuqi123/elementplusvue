@@ -1,10 +1,10 @@
 <script setup>
-import { ref } from 'vue';
-import { login } from '@/api/app';
-import { useCookies } from "vue3-cookies";
-const {cookies} = useCookies();
-console.log(cookies.set('userInfo', JSON.stringify({a: 5})));
-console.log(cookies.get('userInfo'));
+import { ref } from 'vue'
+import { login } from '@/api/app'
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies()
+console.log(cookies.set('userInfo', JSON.stringify({ a: 5 })))
+console.log(cookies.get('userInfo'))
 // import { useCounterStore } from '@/stores/counter';
 
 // import { useAppConfigStore } from '@/stores/appConfig';
@@ -12,16 +12,16 @@ console.log(cookies.get('userInfo'));
 // const { setLocale } = useAppConfigStore()
 // const { increment, $state } = useCounterStore();
 // import { Button } from 'ant-design-vue';
-import 'prismjs';
-import 'prismjs/components/prism-clike';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/themes/prism-okaidia.css';
+import 'prismjs'
+import 'prismjs/components/prism-clike'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/themes/prism-okaidia.css'
 const code = ref(`
   function helloWorld() {
     console.log('Hello, World!');
   }
   helloWorld();
-`);
+`)
 </script>
 
 <template>

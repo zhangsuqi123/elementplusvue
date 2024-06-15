@@ -1,13 +1,13 @@
 <script setup>
-import { reactive } from 'vue';
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import {setCookie} from '@/libs/cookie'
-import crypto from '@/libs/crypto-web';
-import { login } from '@/api/user';
-import { useRouter } from 'vue-router';
-import {useAppStore} from '@/stores/app';
+import { reactive } from 'vue'
+import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
+import { setCookie } from '@/libs/cookie'
+import crypto from '@/libs/crypto-web'
+import { login } from '@/api/user'
+import { useRouter } from 'vue-router'
+import { useAppStore } from '@/stores/app'
 const { setToken } = useAppStore()
-const router = useRouter();
+const router = useRouter()
 
 const formState = reactive({
   username: '',
@@ -21,10 +21,10 @@ const onFinish = async (values) => {
   }
   login({
     userInfo: crypto.encode(JSON.stringify(userInfo))
-  }).then(({data})=>{
-    if(values.remember){
+  }).then(({ data }) => {
+    if (values.remember) {
       setCookie('token', data.token)
-    }else{
+    } else {
       window.sessionStorage.setItem('token', data.token)
     }
     setToken(data.token)

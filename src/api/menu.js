@@ -1,8 +1,8 @@
-import request from '@/utils/axios';
+import request from '@/utils/axios'
 
 /**
  * 获取菜单数据
- * @param {*} object 
+ * @param {*} object
  * @method get
  * @returns Promise
  */

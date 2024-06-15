@@ -4,7 +4,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
-const app = createApp(App);
+const app = createApp(App)
 let loading = document.getElementById('loading')
 loading.style.display = 'block'
 

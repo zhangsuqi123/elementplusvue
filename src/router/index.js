@@ -46,18 +46,18 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // 如果目标路由是 'Login'
   if (to.name === 'Login') {
-    next();
-    return;
+    next()
+    return
   }
 
   // 获取 token
-  const token = getCookie("token");
+  const token = getCookie('token')
 
   // 如果没有 token，重定向到登录页面
   if (!token) {
-    next({ name: 'Login' });
+    next({ name: 'Login' })
   } else {
-    next(); // 继续导航
+    next() // 继续导航
   }
 })
 

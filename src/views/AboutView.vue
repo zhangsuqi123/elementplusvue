@@ -3,7 +3,7 @@
     <vxe-grid ref="xGrid" class="my-grid88" v-bind="gridOptions">
       <template #toolbar_buttons>
         <button>按钮</button>
-        <input type="text"/>
+        <input type="text" />
         <vxe-button>按钮1</vxe-button>
         <vxe-button>按钮2</vxe-button>
       </template>
@@ -16,7 +16,8 @@
       </template>
 
       <template #default_name="{ row }">
-        <span style="color: red;">{{ row.name }}</span>,
+        <span style="color: red">{{ row.name }}</span
+        >,
         <button @click="showDetailEvent(row)">弹框</button>
       </template>
 
@@ -26,14 +27,18 @@
 
       <template #filter_sex="{ column, $panel }">
         <div v-for="(option, index) in column.filters" :key="index">
-          <input type="type" v-model="option.data" @input="changeFilterEvent($event, option, $panel)" />
+          <input
+            type="type"
+            v-model="option.data"
+            @input="changeFilterEvent($event, option, $panel)"
+          />
         </div>
       </template>
 
       <template #header_sex="{ column }">
         <span>
           <i>@</i>
-          <span style="color: red;" @click="headerClickEvent">{{ column.title }}</span>
+          <span style="color: red" @click="headerClickEvent">{{ column.title }}</span>
         </span>
       </template>
 
@@ -50,7 +55,7 @@
       </template>
 
       <template #default_img1="{ row }">
-        <img v-if="row.img1" :src="row.img1" style="height: 40px;"/>
+        <img v-if="row.img1" :src="row.img1" style="height: 40px" />
         <span v-else>无</span>
       </template>
     </vxe-grid>
@@ -92,7 +97,13 @@ const gridOptions = reactive({
   },
   columns: [
     { type: 'seq', width: 50 },
-    { field: 'name', title: 'Name', width: 200, resizable: false, slots: { header: 'name_header', default: 'default_name' } },
+    {
+      field: 'name',
+      title: 'Name',
+      width: 200,
+      resizable: false,
+      slots: { header: 'name_header', default: 'default_name' }
+    },
     {
       field: 'sex',
       title: 'Sex',
@@ -128,7 +139,7 @@ const changeFilterEvent = (event, option, $panel) => {
   $panel.changeOption(event, !!option.data, option)
 }
 const mockList = (size) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const list = []
     for (let index = 0; index < size; index++) {
       list.push({
@@ -149,7 +160,7 @@ const mockList = (size) => {
 nextTick(() => {
   gridOptions.loading = true
   // 使用函数式加载
-  mockList(400).then(data => {
+  mockList(400).then((data) => {
     gridOptions.loading = false
     const $grid = xGrid.value
     if ($grid) {

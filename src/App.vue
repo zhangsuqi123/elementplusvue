@@ -37,9 +37,7 @@ router.beforeEach((to, from, next) => {
         <a-breadcrumb-item>List</a-breadcrumb-item>
         <a-breadcrumb-item>App</a-breadcrumb-item>
       </a-breadcrumb>
-      <a-layout-content
-        :style="{ margin: '6px 20px 0px', padding: '10px 10px 0px' }"
-      >
+      <a-layout-content :style="{ margin: '6px 20px 0px', padding: '10px 10px 0px' }">
         <RouterView></RouterView>
       </a-layout-content>
       <!-- <a-layout-footer :style="{ textAlign: 'left', padding: '16px 30px' }">
@@ -51,9 +49,9 @@ router.beforeEach((to, from, next) => {
 
 <style>
 .trigger {
-  font-size: .18rem;
-  line-height: .6rem;
-  padding: 0 .16rem;
+  font-size: 0.18rem;
+  line-height: 0.6rem;
+  padding: 0 0.16rem;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -63,10 +61,10 @@ router.beforeEach((to, from, next) => {
 }
 
 .logo {
-  height: .6rem;
+  height: 0.6rem;
   background: #ff00004d;
-  margin: .16rem;
-  min-height: .6rem;
+  margin: 0.16rem;
+  min-height: 0.6rem;
 }
 
 .site-layout .site-layout-background {

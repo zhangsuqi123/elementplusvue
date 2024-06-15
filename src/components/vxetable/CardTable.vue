@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import { ref, getCurrentInstance } from 'vue'
-const { emit } = getCurrentInstance();
+const { emit } = getCurrentInstance()
 const gridRef = ref()
 
 const props = defineProps({
@@ -30,19 +30,19 @@ const props = defineProps({
     default: () => ({})
   },
   tableTotal: {
-    type:Number,
+    type: Number,
     default: 0
   }
 })
 
 const getSlot = () => {
-  let arr = [];
-  props.tableColumns.forEach(item => {
-    if(item.slots){
+  let arr = []
+  props.tableColumns.forEach((item) => {
+    if (item.slots) {
       arr.push(Object.values(item.slots)[0])
     }
   })
-  return arr;
+  return arr
 }
 
 const pagerConfigs = ref(props.pagerConfig)
@@ -50,7 +50,6 @@ const pagerConfigs = ref(props.pagerConfig)
 const handlePageChange = (pagerConfig) => {
   emit('pager-change', pagerConfig)
 }
-
 </script>
 <template>
   <a-card :bordered="false">
@@ -75,11 +74,21 @@ const handlePageChange = (pagerConfig) => {
       <template #pager>
         <!--使用 pager 插槽-->
         <vxe-pager
-          :layouts="['PrevJump', 'PrevPage', 'Number', 'NextPage', 'NextJump', 'Sizes', 'FullJump', 'Total']"
+          :layouts="[
+            'PrevJump',
+            'PrevPage',
+            'Number',
+            'NextPage',
+            'NextJump',
+            'Sizes',
+            'FullJump',
+            'Total'
+          ]"
           v-model:current-page="pagerConfigs.currentPage"
           v-model:page-size="pagerConfigs.pageSize"
           :total="tableTotal"
-          @page-change="handlePageChange">
+          @page-change="handlePageChange"
+        >
         </vxe-pager>
       </template>
     </vxe-grid>

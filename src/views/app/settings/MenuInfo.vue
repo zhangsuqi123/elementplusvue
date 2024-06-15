@@ -9,14 +9,28 @@
     @pager-change="pageChange"
   >
     <template #header>
-      <a-button type="primary" @click="modal2Visible = true;type = 'add'">添加菜单</a-button>
+      <a-button
+        type="primary"
+        @click="
+          modal2Visible = true
+          type = 'add'
+        "
+        >添加菜单</a-button
+      >
     </template>
     <template #operation="{ row }">
       <a-button style="margin-right: 10px" @click="edit(row)" size="small">编辑</a-button>
       <a-button type="primary" danger @click="del(row)" size="small">删除</a-button>
     </template>
   </CardTable>
-  <a-modal v-model:open="modal2Visible" title="添加菜单" :width="800" centered :footer="null" @cancel="cancel">
+  <a-modal
+    v-model:open="modal2Visible"
+    title="添加菜单"
+    :width="800"
+    centered
+    :footer="null"
+    @cancel="cancel"
+  >
     <a-form
       ref="formRef"
       name="advanced_search"
@@ -91,9 +105,9 @@
 <script setup>
 import { ref, reactive, onMounted, createVNode } from 'vue'
 import CardTable from '@/components/vxetable/CardTable.vue'
-import { GetMenuData, AddMenu, EditMenu, DelMenu } from '@/api/menu';
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-import { Modal } from 'ant-design-vue';
+import { GetMenuData, AddMenu, EditMenu, DelMenu } from '@/api/menu'
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
+import { Modal } from 'ant-design-vue'
 // 表格列
 const tableColumns = ref([
   {
@@ -127,10 +141,10 @@ const tableColumns = ref([
   {
     title: '类型',
     field: 'types',
-    formatter: ({row}) => {
-      if(row.types === 'H'){
+    formatter: ({ row }) => {
+      if (row.types === 'H') {
         return '超链接'
-      }else if (row.types === 'D'){
+      } else if (row.types === 'D') {
         return '目录'
       }
       return '页面'
@@ -143,8 +157,8 @@ const tableColumns = ref([
   {
     title: '是否可见',
     field: 'show',
-    formatter: ({row}) => {
-      if(row.show){
+    formatter: ({ row }) => {
+      if (row.show) {
         return '是'
       }
       return '否'
@@ -163,7 +177,7 @@ const tableData = ref([])
 const modal2Visible = ref(false)
 
 // 定义表格的总条数
-const tableTotal = ref(0);
+const tableTotal = ref(0)
 // 定义表格的分页
 const pagerConfig = ref({
   currentPage: 1,
@@ -198,9 +212,9 @@ const menuInfo = ref({
 
 // 点击确认添加菜单
 const submit = async () => {
-  if(type.value === 'add'){
+  if (type.value === 'add') {
     await AddMenu(menuInfo.value)
-  } else if (type.value === 'edit'){
+  } else if (type.value === 'edit') {
     await EditMenu(menuInfo.value)
   }
   getData()
@@ -211,12 +225,15 @@ onMounted(() => {
   getData()
 })
 const getData = () => {
-  gridOptions.loading = true;
-  GetMenuData({currentPage: pagerConfig.value.currentPage, pageSize: pagerConfig.value.pageSize}).then((res) => {
+  gridOptions.loading = true
+  GetMenuData({
+    currentPage: pagerConfig.value.currentPage,
+    pageSize: pagerConfig.value.pageSize
+  }).then((res) => {
     const { data } = res
-    tableData.value = data.data;
-    tableTotal.value = data.count;
-    gridOptions.loading = false;
+    tableData.value = data.data
+    tableTotal.value = data.count
+    gridOptions.loading = false
   })
 }
 
@@ -227,9 +244,9 @@ const edit = (row) => {
   delete rowData._X_ROW_KEY
   rowData.show = Boolean(rowData.show)
   // 对处理后的进行深浅拷贝保证不是一个数据  不然后续调用会一直更改
-  oldMenuInfo.value = JSON.parse(JSON.stringify(rowData));
-  menuInfo.value = rowData;
-  modal2Visible.value = true;
+  oldMenuInfo.value = JSON.parse(JSON.stringify(rowData))
+  menuInfo.value = rowData
+  modal2Visible.value = true
 }
 
 // 点击删除按钮的事件
@@ -245,13 +262,13 @@ const del = (row) => {
       await DelMenu(row)
       getData()
     },
-    onCancel() {},
-  });
+    onCancel() {}
+  })
 }
 
 // 点击重置按钮把数据给重置
 const reset = () => {
-  if(type.value === 'add'){
+  if (type.value === 'add') {
     menuInfo.value = {
       menuname: '',
       id: '',
@@ -264,13 +281,13 @@ const reset = () => {
       show: true,
       enname: ''
     }
-  }else{
+  } else {
     menuInfo.value = oldMenuInfo.value
   }
 }
-const pageChange = ({currentPage, pageSize}) => {
-  pagerConfig.value.pageSize = pageSize;
-  pagerConfig.value.currentPage = currentPage;
+const pageChange = ({ currentPage, pageSize }) => {
+  pagerConfig.value.pageSize = pageSize
+  pagerConfig.value.currentPage = currentPage
   getData()
 }
 
