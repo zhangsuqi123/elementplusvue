@@ -5,10 +5,11 @@ import il8n from '@/il8n'
 
 export const useAppConfigStore = defineStore('appConfig', () => {
   // 定义当前的系统语言
-  const appLocale = ref('zh')
+  const appLocale = ref(il8n.global.locale)
 
   // 设置当前的系统语言 zh en
   const setLocale = (lan) => {
+    appLocale.value = lan
     il8n.global.locale = lan
     localStorage.setItem('language', lan)
   }
