@@ -23,29 +23,24 @@ console.dir(io)
 const socket = ref(null)
 const url = import.meta.env.VITE_WS_URL
 onMounted(() => {
-  const sockets = io(url, {
+  console.log(url);
+  socket.value = io(url, {
     query: {
       room: 'test',
     },
     transports: ['websocket']
   })
-  sockets.on('connect', () => {
-    sockets.emit('room', {msg: 11111})
-    sockets.on('qim8A5mvmHtPAkt3AAAB', (data) => {
+  socket.value.on('connect', () => {
+    socket.value.emit('osInfo', {msg: 11111})
+    console.log(socket.value.id)
+    socket.value.on(socket.value.id, (data) => {
       console.log(data)
     })
-    console.log('Connected to WebSocket server')
   })
   // 处理连接失败
-  sockets.on('connect_error', (error) => {
+  socket.value.on('connect_error', (error) => {
     console.error('Connection failed:', error)
   })
-  console.log(sockets.id)
-  sockets.on('res', (data) => {
-    console.log('Received message:', data)
-  })
-
-  // sockets.emit('room', 'Hello Server!')
 })
 
 onBeforeUnmount(() => {})
