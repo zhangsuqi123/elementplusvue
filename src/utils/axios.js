@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { message } from 'ant-design-vue'
+import router from '@/router';
 
 const instance = axios.create({
   // 可以在这里设置基础的axios配置，例如baseURL，timeout等
@@ -37,6 +38,9 @@ instance.interceptors.response.use(
     const { response } = error
     if (response?.data.message || error.message) {
       message.error(response?.data.message || error.message)
+    }
+    if(response.status === 403){
+      router.push('/login');
     }
     return Promise.reject(error)
   }

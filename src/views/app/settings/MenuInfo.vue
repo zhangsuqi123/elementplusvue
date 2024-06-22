@@ -4,6 +4,7 @@
     :table-config="gridOptions"
     :table-columns="tableColumns"
     :table-data="tableData"
+    :height="700"
     :table-total="tableTotal"
     :pager-config="pagerConfig"
     @pager-change="pageChange"
@@ -36,6 +37,7 @@
       name="advanced_search"
       class="ant-advanced-search-form"
       :model="menuInfo"
+      :afterClose="cancel"
       :labelCol="{ span: 5 }"
     >
       <a-row :gutter="24">
@@ -207,7 +209,8 @@ const menuInfo = ref({
   types: 'P',
   href: '',
   show: true,
-  enname: ''
+  enname: '',
+  parentid: ''
 })
 
 // 点击确认添加菜单
@@ -279,7 +282,8 @@ const reset = () => {
       types: 'P',
       href: '',
       show: true,
-      enname: ''
+      enname: '',
+      parentid: ''
     }
   } else {
     menuInfo.value = oldMenuInfo.value
@@ -302,7 +306,8 @@ const cancel = () => {
     types: 'P',
     href: '',
     show: true,
-    enname: ''
+    enname: '',
+      parentid: ''
   }
 }
 </script>

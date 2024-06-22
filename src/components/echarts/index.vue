@@ -44,8 +44,6 @@ export default defineComponent({
       tooltip: {
         trigger: 'axis'
       },
-      legend: {
-      },
       grid: {
         left: '3%',
         right: '4%',

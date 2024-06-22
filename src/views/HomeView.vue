@@ -36,14 +36,20 @@ onMounted(() => {
       text: '内存使用率'
     },
     xAxis: {
-      type: 'category'
+      type: 'category',
+      axisLabel: {
+        show: false
+      }
     },
-    yAxis: {},
+    yAxis: {
+      max: 100
+    },
     series: [
       {
         name: '使用率',
         type: 'line',
-        data: dataPoints.value
+        data: dataPoints.value,
+        showSymbol: false,
       }
     ]
   })

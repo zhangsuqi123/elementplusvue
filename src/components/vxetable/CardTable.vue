@@ -65,7 +65,8 @@ const handlePageChange = (pagerConfig) => {
       :columns="props.tableColumns"
       :data="props.tableData"
       v-bind="props.tableConfig"
-      :height="500"
+      :height="props.height"
+      size="small"
       :auto-resize="true"
     >
       <template v-for="(item, index) in getSlot()" :key="index" #[item]="row">
