@@ -1,17 +1,17 @@
 <script setup>
-import { h, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useAppConfigStore } from '@/stores/appConfig';
-const { $state } = useAppConfigStore();
-const router = useRouter();
+import { h, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAppConfigStore } from '@/stores/appConfig'
+const { $state } = useAppConfigStore()
+const router = useRouter()
 import {
   SettingOutlined,
   CalendarOutlined,
   AppstoreOutlined,
   HomeOutlined
-} from '@ant-design/icons-vue';
-const selectedKeys = ref([]);
-const openKeys = ref([]);
+} from '@ant-design/icons-vue'
+const selectedKeys = ref([])
+const openKeys = ref([])
 const items = ref([
   {
     key: 'Home',

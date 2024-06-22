@@ -307,7 +307,7 @@ const cancel = () => {
     href: '',
     show: true,
     enname: '',
-      parentid: ''
+    parentid: ''
   }
 }
 </script>

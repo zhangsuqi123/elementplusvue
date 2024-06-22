@@ -7,7 +7,7 @@ import io from 'socket.io-client'
 const echart = ref(null)
 
 const socket = ref(null)
-const dataPoints = ref([]); // 存储数据点
+const dataPoints = ref([]) // 存储数据点
 const url = import.meta.env.VITE_WS_URL
 onMounted(() => {
   socket.value = io(url, {
@@ -21,9 +21,11 @@ onMounted(() => {
     socket.value.on(socket.value.id, (data) => {
       dataPoints.value.push(data.uselv)
       echart.value.echart.setOption({
-        series: [{
-          data: dataPoints.value
-        }]
+        series: [
+          {
+            data: dataPoints.value
+          }
+        ]
       })
     })
   })
@@ -42,14 +44,17 @@ onMounted(() => {
       }
     },
     yAxis: {
-      max: 100
+      max: 100,
+      axisLabel: {
+        formatter: '{value}%'
+      }
     },
     series: [
       {
         name: '使用率',
         type: 'line',
         data: dataPoints.value,
-        showSymbol: false,
+        showSymbol: false
       }
     ]
   })

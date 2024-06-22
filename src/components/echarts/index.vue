@@ -1,15 +1,25 @@
 // components/Chart.vue
 <template>
-  <v-chart ref="echart" :option="mergedOptions" :autoresize="true" style="width: 100%; height: 100%;"></v-chart>
+  <v-chart
+    ref="echart"
+    :option="mergedOptions"
+    :autoresize="true"
+    style="width: 100%; height: 100%"
+  ></v-chart>
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
-import ECharts from 'vue-echarts';
-import { use } from 'echarts/core';
-import { CanvasRenderer } from 'echarts/renderers';
-import { BarChart, LineChart, PieChart } from 'echarts/charts';
-import { TitleComponent, TooltipComponent, GridComponent, LegendComponent } from 'echarts/components';
+import { defineComponent, computed } from 'vue'
+import ECharts from 'vue-echarts'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart, LineChart, PieChart } from 'echarts/charts'
+import {
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  LegendComponent
+} from 'echarts/components'
 
 use([
   CanvasRenderer,
@@ -20,7 +30,7 @@ use([
   TooltipComponent,
   GridComponent,
   LegendComponent
-]);
+])
 
 export default defineComponent({
   name: 'Chart',
@@ -57,23 +67,23 @@ export default defineComponent({
       yAxis: {
         type: 'value'
       }
-    };
+    }
 
-    const echart = null;
+    const echart = null
 
     const mergedOptions = computed(() => {
       return {
         ...defaultOptions,
         ...props.options
-      };
-    });
+      }
+    })
 
     return {
       mergedOptions,
       echart
-    };
+    }
   }
-});
+})
 </script>
 
 <style scoped>

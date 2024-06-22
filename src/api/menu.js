@@ -54,3 +54,13 @@ export function DelMenu(params) {
     method: 'delete'
   })
 }
+
+/**
+ * 获取父节点的菜单
+ */
+export function getParentMenu() {
+  return request({
+    url: `/getDirectory`,
+    method: 'post'
+  })
+}
