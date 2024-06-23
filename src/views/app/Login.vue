@@ -1,39 +1,44 @@
 <script setup>
-import { reactive } from 'vue'
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-import { setCookie } from '@/libs/cookie'
-import crypto from '@/libs/crypto-web'
-import { login } from '@/api/user'
-import { useRouter } from 'vue-router'
-import { useAppStore } from '@/stores/app'
-const { setToken } = useAppStore()
-const router = useRouter()
+import { reactive } from 'vue';
+import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import { setCookie } from '@/libs/cookie';
+import crypto from '@/libs/crypto-web';
+import { login } from '@/api/user';
+import { useRouter } from 'vue-router';
+import { useAppStore } from '@/stores/app';
+import { useAppConfig } from '@/stores/appConfig';
+const { setToken } = useAppStore();
+const { getBasicInfo } = useAppConfig();
+const router = useRouter();
+let loading = document.getElementById('loading');
 
 const formState = reactive({
   username: '',
   password: '',
   remember: true
-})
+});
 const onFinish = async (values) => {
   let userInfo = {
     password: crypto.encode(values.password),
     username: values.username
-  }
+  };
   login({
     userInfo: crypto.encode(JSON.stringify(userInfo))
   }).then(({ data }) => {
     if (values.remember) {
-      setCookie('token', data.token)
+      setCookie('token', data.token);
     } else {
-      window.sessionStorage.setItem('token', data.token)
+      window.sessionStorage.setItem('token', data.token);
     }
-    setToken(data.token)
-    router.push('/')
-  })
-}
+    setToken(data.token);
+    loading.style.display = 'block';
+    getBasicInfo();
+    router.push('/');
+  });
+};
 const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo)
-}
+  console.log('Failed:', errorInfo);
+};
 </script>
 <template>
   <div class="login">

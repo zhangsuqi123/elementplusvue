@@ -26,10 +26,6 @@ const props = defineProps({
   <a-card
     :bordered="false"
     :title="props.title"
-    :style="{
-      width: `${props.width}`,
-      height: `${props.height}`
-    }"
   >
     <echarts
       ref="chart"

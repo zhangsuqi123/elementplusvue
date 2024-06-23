@@ -86,11 +86,6 @@ onBeforeUnmount(() => {
         主机名称： {{ osInfo.hostname }}
       </CardBasic>
     </a-col>
-    <a-col :span="10">
-      <a-card title="Card title" :bordered="false">
-        <p>card content</p>
-      </a-card>
-    </a-col>
   </a-row>
   <!--<a-card :bordered="false" style="width: 300px; height: 500px">
     <p><span style="color: red">Admin</span>，下午好！欢迎回来！{{ $t('hello') }}</p>

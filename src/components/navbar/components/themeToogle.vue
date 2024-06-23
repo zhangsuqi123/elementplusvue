@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 // import { Sunny, Moon } from '@element-plus/icons-vue'
-import { useDark, useToggle } from '@vueuse/core'
-import { useAppConfigStore } from '@/stores/appConfig'
-const { setTheme } = useAppConfigStore()
+import { useDark, useToggle } from '@vueuse/core';
+import { useAppConfig } from '@/stores/appConfig';
+const { setTheme } = useAppConfig();
 
-const theme = localStorage.getItem('theme-appearance') || 'dark'
-const toggleDarkModel = ref(theme === 'dark')
+const theme = localStorage.getItem('theme-appearance') || 'dark';
+const toggleDarkModel = ref(theme === 'dark');
 
 const isDark = useDark({
   storageKey: 'theme-appearance',
@@ -14,26 +14,26 @@ const isDark = useDark({
   attribute: 'data-bs-theme',
   valueDark: 'dark',
   valueLight: 'light'
-})
-const toggleDark = useToggle(isDark)
+});
+const toggleDark = useToggle(isDark);
 
 const toggleTheme = (event) => {
-  setTheme(isDark.value ? 'light' : 'dark')
-  const x = event.clientX
-  const y = event.clientY
-  const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
+  setTheme(isDark.value ? 'light' : 'dark');
+  const x = event.clientX;
+  const y = event.clientY;
+  const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
 
   // 兼容性处理
   if (!document.startViewTransition) {
-    toggleDark()
-    return
+    toggleDark();
+    return;
   }
   const transition = document.startViewTransition(async () => {
-    toggleDark()
-  })
+    toggleDark();
+  });
 
   transition.ready.then(() => {
-    const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
+    const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
     document.documentElement.animate(
       {
         clipPath: isDark.value ? [...clipPath].reverse() : clipPath
@@ -43,9 +43,9 @@ const toggleTheme = (event) => {
         easing: 'ease-in',
         pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)'
       }
-    )
-  })
-}
+    );
+  });
+};
 </script>
 
 <template>

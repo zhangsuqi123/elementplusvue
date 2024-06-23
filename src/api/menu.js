@@ -1,4 +1,4 @@
-import request from '@/utils/axios'
+import request from '@/utils/axios';
 
 /**
  * 获取菜单数据
@@ -11,7 +11,7 @@ export function GetMenuData(params) {
     url: '/menu',
     method: 'get',
     params
-  })
+  });
 }
 
 /**
@@ -25,7 +25,7 @@ export function AddMenu(params) {
     url: '/menu',
     method: 'post',
     data: params
-  })
+  });
 }
 
 /**
@@ -39,7 +39,7 @@ export function EditMenu(params) {
     url: `/menu/${params.id}`,
     method: 'put',
     data: params
-  })
+  });
 }
 
 /**
@@ -52,15 +52,25 @@ export function DelMenu(params) {
   return request({
     url: `/menu/${params.id}`,
     method: 'delete'
-  })
+  });
 }
 
 /**
- * 获取父节点的菜单
+ * 获取菜单信息
  */
 export function getParentMenu() {
   return request({
-    url: `/getDirectory`,
+    url: '/getDirectory',
     method: 'post'
-  })
+  });
+}
+
+/**
+ * 获取路由信息
+ */
+export function getRoute() {
+  return request({
+    url: '/getRoute',
+    method: 'post'
+  });
 }

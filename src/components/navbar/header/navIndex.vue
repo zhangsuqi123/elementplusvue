@@ -1,9 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import themeToogle from '@/components/navbar/components/themeToogle.vue'
-import { useAppConfigStore } from '@/stores/appConfig'
-const { $state, setMenuCollapsed } = useAppConfigStore()
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
+import themeToogle from '@/components/navbar/components/themeToogle.vue';
+import { useAppConfig } from '@/stores/appConfig';
+const { $state, setMenuCollapsed } = useAppConfig();
 </script>
 <template>
   <a-layout-header

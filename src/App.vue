@@ -1,29 +1,29 @@
 <script setup>
-import { RouterView, useRoute, useRouter } from 'vue-router'
-import { ref, watchEffect } from 'vue'
-import navLeftMenu from '@/components/navbar/menu/navLeftMenu.vue'
-import Header from '@/components/navbar/header/navIndex.vue'
-
-let loading = document.getElementById('loading')
-loading.style.display = 'none'
+import { RouterView, useRoute, useRouter } from 'vue-router';
+import { ref, watchEffect } from 'vue';
+import { useAppConfig } from '@/stores/appConfig';
+import navLeftMenu from '@/components/navbar/menu/navLeftMenu.vue';
+import Header from '@/components/navbar/header/navIndex.vue';
+const { getBasicInfo } = useAppConfig();
+getBasicInfo();
 
 // 获取当前路由
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
 // 定义 isFullScreen 并设置初始值
-const isFullScreen = ref(route.meta.isFullScreen)
+const isFullScreen = ref(route.meta.isFullScreen);
 
 // 监听路由变化，并动态更新 isFullScreen
 watchEffect(() => {
-  isFullScreen.value = route.meta.isFullScreen
-})
+  isFullScreen.value = route.meta.isFullScreen;
+});
 
 // 使用路由导航守卫提前处理 isFullScreen 状态
 router.beforeEach((to, from, next) => {
-  isFullScreen.value = to.meta.isFullScreen
-  next()
-})
+  isFullScreen.value = to.meta.isFullScreen;
+  next();
+});
 </script>
 
 <template>
