@@ -3,22 +3,14 @@
 
 .ant-card {
   background-color: var(--card-background-color);
-  height: 800px;
-}
-
-.ant-card-head-title {
-  color: var(--text-color-regular);
-}
-
-.ant-card-head-title {
-  color: var(--text-color-primary);
-}
-
-.ant-card-body {
-  padding: 15px 30px 30px;
-}
-
-.ant-card-meta {
-  padding-top: 15px;
-  padding-bottom: 20px;
+  height: 400px;
+  .ant-card-head {
+    border: none;
+    padding: 10px 15px;
+  }
+  .ant-card-body {
+    width: 100%;
+    height: calc(100% - 56px);
+    padding: 10px 15px 15px;
+  }
 }

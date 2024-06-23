@@ -1,5 +1,5 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
+require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
   root: true,
@@ -12,6 +12,9 @@ module.exports = {
     ecmaVersion: 2021
   },
   rules: {
-    "vue/multi-word-component-names": "off"
+    'vue/multi-word-component-names': 'off',
+    'semi': ['error', 'always'],
+    'quotes': ['error', 'single'],
+    'object-curly-spacing': ['error', 'always']
   }
-}
+};

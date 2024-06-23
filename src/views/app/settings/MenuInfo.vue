@@ -105,11 +105,11 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, createVNode } from 'vue'
-import CardTable from '@/components/vxetable/CardTable.vue'
-import { GetMenuData, AddMenu, EditMenu, DelMenu } from '@/api/menu'
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-import { Modal } from 'ant-design-vue'
+import { ref, reactive, onMounted, createVNode } from 'vue';
+import CardTable from '@/components/vxetable/CardTable.vue';
+import { GetMenuData, AddMenu, EditMenu, DelMenu } from '@/api/menu';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { Modal } from 'ant-design-vue';
 // 表格列
 const tableColumns = ref([
   {
@@ -145,11 +145,11 @@ const tableColumns = ref([
     field: 'types',
     formatter: ({ row }) => {
       if (row.types === 'H') {
-        return '超链接'
+        return '超链接';
       } else if (row.types === 'D') {
-        return '目录'
+        return '目录';
       }
-      return '页面'
+      return '页面';
     }
   },
   {
@@ -161,9 +161,9 @@ const tableColumns = ref([
     field: 'show',
     formatter: ({ row }) => {
       if (row.show) {
-        return '是'
+        return '是';
       }
-      return '否'
+      return '否';
     }
   },
   {
@@ -172,19 +172,19 @@ const tableColumns = ref([
       default: 'operation'
     }
   }
-])
+]);
 // 表格数据
-const tableData = ref([])
+const tableData = ref([]);
 // 展示添加和修改的弹窗
-const modal2Visible = ref(false)
+const modal2Visible = ref(false);
 
 // 定义表格的总条数
-const tableTotal = ref(0)
+const tableTotal = ref(0);
 // 定义表格的分页
 const pagerConfig = ref({
   currentPage: 1,
   pageSize: 15
-})
+});
 // 表格的配置项
 const gridOptions = reactive({
   border: true, // 是否带有边框
@@ -193,11 +193,11 @@ const gridOptions = reactive({
   stripe: true, // 斑马格
   showHeaderOverflow: true, // 表格列名过长时展示省略号
   loading: false // 是否展示loading
-})
+});
 
 // 定义一个原始数据的对象
-const oldMenuInfo = ref({})
-const type = ref('add')
+const oldMenuInfo = ref({});
+const type = ref('add');
 // 定义添加/修改表格的字段
 const menuInfo = ref({
   menuname: '',
@@ -211,46 +211,46 @@ const menuInfo = ref({
   show: true,
   enname: '',
   parentid: ''
-})
+});
 
 // 点击确认添加菜单
 const submit = async () => {
   if (type.value === 'add') {
-    await AddMenu(menuInfo.value)
+    await AddMenu(menuInfo.value);
   } else if (type.value === 'edit') {
-    await EditMenu(menuInfo.value)
+    await EditMenu(menuInfo.value);
   }
-  getData()
-  modal2Visible.value = false
-}
+  getData();
+  modal2Visible.value = false;
+};
 
 onMounted(() => {
-  getData()
-})
+  getData();
+});
 const getData = () => {
-  gridOptions.loading = true
+  gridOptions.loading = true;
   GetMenuData({
     currentPage: pagerConfig.value.currentPage,
     pageSize: pagerConfig.value.pageSize
   }).then((res) => {
-    const { data } = res
-    tableData.value = data.data
-    tableTotal.value = data.count
-    gridOptions.loading = false
-  })
-}
+    const { data } = res;
+    tableData.value = data.data;
+    tableTotal.value = data.count;
+    gridOptions.loading = false;
+  });
+};
 
 // 点击修改按钮的事件
 const edit = (row) => {
-  type.value = 'edit'
-  let rowData = JSON.parse(JSON.stringify(row))
-  delete rowData._X_ROW_KEY
-  rowData.show = Boolean(rowData.show)
+  type.value = 'edit';
+  let rowData = JSON.parse(JSON.stringify(row));
+  delete rowData._X_ROW_KEY;
+  rowData.show = Boolean(rowData.show);
   // 对处理后的进行深浅拷贝保证不是一个数据  不然后续调用会一直更改
-  oldMenuInfo.value = JSON.parse(JSON.stringify(rowData))
-  menuInfo.value = rowData
-  modal2Visible.value = true
-}
+  oldMenuInfo.value = JSON.parse(JSON.stringify(rowData));
+  menuInfo.value = rowData;
+  modal2Visible.value = true;
+};
 
 // 点击删除按钮的事件
 const del = (row) => {
@@ -262,12 +262,12 @@ const del = (row) => {
     okText: '确认',
     cancelText: '取消',
     async onOk() {
-      await DelMenu(row)
-      getData()
+      await DelMenu(row);
+      getData();
     },
     onCancel() {}
-  })
-}
+  });
+};
 
 // 点击重置按钮把数据给重置
 const reset = () => {
@@ -284,16 +284,16 @@ const reset = () => {
       show: true,
       enname: '',
       parentid: ''
-    }
+    };
   } else {
-    menuInfo.value = oldMenuInfo.value
+    menuInfo.value = oldMenuInfo.value;
   }
-}
+};
 const pageChange = ({ currentPage, pageSize }) => {
-  pagerConfig.value.pageSize = pageSize
-  pagerConfig.value.currentPage = currentPage
-  getData()
-}
+  pagerConfig.value.pageSize = pageSize;
+  pagerConfig.value.currentPage = currentPage;
+  getData();
+};
 
 const cancel = () => {
   menuInfo.value = {
@@ -308,6 +308,6 @@ const cancel = () => {
     show: true,
     enname: '',
     parentid: ''
-  }
-}
+  };
+};
 </script>
