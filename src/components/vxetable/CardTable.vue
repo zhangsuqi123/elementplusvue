@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { ref, getCurrentInstance } from 'vue'
-const { emit } = getCurrentInstance()
-const gridRef = ref()
+import { ref, getCurrentInstance } from 'vue';
+const { emit } = getCurrentInstance();
+const gridRef = ref();
 
 const props = defineProps({
   title: {
@@ -33,26 +33,32 @@ const props = defineProps({
     type: Number,
     default: 0
   }
-})
+});
 
 const getSlot = () => {
-  let arr = []
+  let arr = [];
   props.tableColumns.forEach((item) => {
     if (item.slots) {
-      arr.push(Object.values(item.slots)[0])
+      arr.push(Object.values(item.slots)[0]);
     }
-  })
-  return arr
-}
+  });
+  return arr;
+};
 
-const pagerConfigs = ref(props.pagerConfig)
+const pagerConfigs = ref(props.pagerConfig);
 
 const handlePageChange = (pagerConfig) => {
-  emit('pager-change', pagerConfig)
-}
+  emit('pager-change', pagerConfig);
+};
 </script>
+
 <template>
-  <a-card :bordered="false">
+  <a-card
+    :bordered="false"
+    :style="{
+      height: props.height + 'px'
+    }"
+  >
     <a-card-meta>
       <template #description>
         <slot name="header">
@@ -65,13 +71,14 @@ const handlePageChange = (pagerConfig) => {
       :columns="props.tableColumns"
       :data="props.tableData"
       v-bind="props.tableConfig"
-      :height="props.height"
+      height="100%"
       size="small"
       :auto-resize="true"
     >
       <template v-for="(item, index) in getSlot()" :key="index" #[item]="row">
-        <slot :name="item" v-bind="row"></slot>
+        <slot :name="item" v-bind="row"> </slot>
       </template>
+
       <template #pager>
         <!--使用 pager 插槽-->
         <vxe-pager

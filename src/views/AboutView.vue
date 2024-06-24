@@ -69,11 +69,11 @@
 </template>
 
 <script setup>
-import { ref, reactive, nextTick } from 'vue'
-import { VXETable } from 'vxe-table'
-const showDetails = ref(false)
-const selectRow = ref(null)
-const xGrid = ref()
+import { ref, reactive, nextTick } from 'vue';
+import { VXETable } from 'vxe-table';
+const showDetails = ref(false);
+const selectRow = ref(null);
+const xGrid = ref();
 const gridOptions = reactive({
   border: true,
   showOverflow: true,
@@ -110,7 +110,7 @@ const gridOptions = reactive({
       showHeaderOverflow: true,
       filters: [{ data: '' }],
       filterMethod: ({ option, row }) => {
-        return row.sex === option.data
+        return row.sex === option.data;
       },
       editRender: {},
       slots: {
@@ -124,23 +124,23 @@ const gridOptions = reactive({
     { field: 'html2', title: 'Html片段', slots: { default: 'default_html2' } },
     { field: 'img1', title: '图片路径', slots: { default: 'default_img1' } }
   ]
-})
+});
 const showDetailEvent = (row) => {
-  selectRow.value = row
-  showDetails.value = true
-}
+  selectRow.value = row;
+  showDetails.value = true;
+};
 const headerClickEvent = () => {
-  VXETable.modal.alert('头部点击事件')
-}
+  VXETable.modal.alert('头部点击事件');
+};
 const addressClickEvent = (row) => {
-  VXETable.modal.alert(`address点击事件：${row.address}`)
-}
+  VXETable.modal.alert(`address点击事件：${row.address}`);
+};
 const changeFilterEvent = (event, option, $panel) => {
-  $panel.changeOption(event, !!option.data, option)
-}
+  $panel.changeOption(event, !!option.data, option);
+};
 const mockList = (size) => {
   return new Promise((resolve) => {
-    const list = []
+    const list = [];
     for (let index = 0; index < size; index++) {
       list.push({
         name: `名称${index}`,
@@ -152,20 +152,20 @@ const mockList = (size) => {
         img1: 'https://5b0988e595225.cdn.sohucs.com/images/20181014/dce7cdaa130440e8b609fad083877ef3.gif',
         html2: `<span style="color:red">HTML标签${index}</span>`,
         address: `test abc系列${index}`
-      })
+      });
     }
-    resolve(list)
-  })
-}
+    resolve(list);
+  });
+};
 nextTick(() => {
-  gridOptions.loading = true
+  gridOptions.loading = true;
   // 使用函数式加载
   mockList(400).then((data) => {
-    gridOptions.loading = false
-    const $grid = xGrid.value
+    gridOptions.loading = false;
+    const $grid = xGrid.value;
     if ($grid) {
-      $grid.loadData(data)
+      $grid.loadData(data);
     }
-  })
-})
+  });
+});
 </script>
