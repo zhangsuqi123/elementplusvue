@@ -1,73 +1,76 @@
 <script setup>
-import { h, ref, watch, toRaw } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAppConfig } from '@/stores/appConfig';
-import * as icons from '@ant-design/icons-vue';
-import _ from 'lodash';
 
-const { $state: state } = useAppConfig();
+const { $state: state, formattedMenu } = useAppConfig();
 const router = useRouter();
 const selectedKeys = ref([]);
 const openKeys = ref([]);
-const MenuData = ref([
-  {
-    key: 'Home',
-    label: '首页',
-    title: '首页',
-    icon: () => h(icons.HomeOutlined),
-    path: '/'
-  }
-]);
-
-// 格式化菜单数据
-const fmtMenu = (menuData) => {
-  return _.cloneDeep(menuData).map((item) => {
-    return {
-      key: item.id,
-      label: item.menuname,
-      title: item.menuname,
-      icon: item.icon ? () => h(icons[item.icon]) : null,
-      path: `/${item.url}`,
-      children: item.children ? fmtMenu(item.children) : null
-    };
-  });
-};
-
-// 监听 store 中 menuData 的变化
-watch(
-  () => state.menuData,
-  (newMenuData) => {
-    const rawMenuData = toRaw(newMenuData);
-    const formattedMenuData = fmtMenu(rawMenuData);
-    if (JSON.stringify(MenuData.value) !== JSON.stringify(formattedMenuData)) {
-      MenuData.value = [...MenuData.value,...formattedMenuData];
-    }
-  }
-);
 
 // 路由跳转
 const toPage = ({ item }) => {
-  router.push(item.path);
+  if (item.path) {
+    router.push(item.path);
+  }
 };
+
+// 计算属性
+const menuItems = computed(() => {
+  console.log('更改');
+  console.log(formattedMenu);
+  return state.menuData;
+});
+const isCollapsed = computed(() => state.collapsed);
+
+// 监听路由变化并设置选中的菜单项
+watch(
+  () => router.currentRoute.value.path,
+  (newPath) => {
+    console.log(newPath);
+    selectedKeys.value = [newPath];
+    console.log(selectedKeys.value);
+  },
+  { immediate: true }
+);
+
+// 监听 collapsed 状态变化并保存到本地存储
+watch(
+  isCollapsed,
+  (newValue) => {
+    localStorage.setItem('menu-collapsed', newValue);
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
   <a-layout-sider
-    v-model:collapsed="state.collapsed"
+    :collapsed="isCollapsed"
     theme="light"
     :trigger="null"
     collapsible
     width="200"
+    @collapse="(collapsed) => state.collapsed = collapsed"
   >
     <div class="logo" />
     <a-menu
       v-model:openKeys="openKeys"
       v-model:selectedKeys="selectedKeys"
-      :inline-collapsed="state.collapsed"
+      :inline-collapsed="isCollapsed"
       class="menu-test"
       mode="inline"
-      :items="MenuData"
+      :items="menuItems"
       @click="toPage"
+      @openChange="(keys) => openKeys = keys"
     />
   </a-layout-sider>
 </template>
+
+<style scoped>
+.logo {
+  height: 60px;
+  background: #ff00004d;
+  margin: 16px;
+}
+</style>

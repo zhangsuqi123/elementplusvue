@@ -1,11 +1,8 @@
 <script setup>
 import { RouterView, useRoute, useRouter } from 'vue-router';
-import { ref, watchEffect } from 'vue';
-import { useAppConfig } from '@/stores/appConfig';
-import navLeftMenu from '@/components/navbar/menu/navLeftMenu.vue';
+import { ref, watch } from 'vue';
+import NavLeftMenu from '@/components/navbar/menu/navLeftMenu.vue';
 import Header from '@/components/navbar/header/navIndex.vue';
-const { getBasicInfo } = useAppConfig();
-getBasicInfo();
 
 // 获取当前路由
 const route = useRoute();
@@ -15,8 +12,8 @@ const router = useRouter();
 const isFullScreen = ref(route.meta.isFullScreen);
 
 // 监听路由变化，并动态更新 isFullScreen
-watchEffect(() => {
-  isFullScreen.value = route.meta.isFullScreen;
+watch(() => route.meta.isFullScreen, (newVal) => {
+  isFullScreen.value = newVal;
 });
 
 // 使用路由导航守卫提前处理 isFullScreen 状态
@@ -29,16 +26,16 @@ router.beforeEach((to, from, next) => {
 <template>
   <RouterView v-if="isFullScreen"></RouterView>
   <a-layout v-else>
-    <navLeftMenu></navLeftMenu>
+    <NavLeftMenu />
     <a-layout>
-      <Header></Header>
+      <Header />
       <a-breadcrumb style="margin: 16px 30px 0">
         <a-breadcrumb-item>Home</a-breadcrumb-item>
         <a-breadcrumb-item>List</a-breadcrumb-item>
         <a-breadcrumb-item>App</a-breadcrumb-item>
       </a-breadcrumb>
       <a-layout-content :style="{ margin: '6px 20px 0px', padding: '10px 10px 0px' }">
-        <RouterView></RouterView>
+        <RouterView />
       </a-layout-content>
       <!-- <a-layout-footer :style="{ textAlign: 'left', padding: '16px 30px' }">
         Ant Design ©2018 Created by Ant UED
