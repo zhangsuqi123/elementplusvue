@@ -1,13 +1,16 @@
 /* eslint-disable no-undef */
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver, AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver, AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import { VxeTableResolver } from '@vxecli/import-unplugin-vue-components';
+import { makeLegalIdentifier } from '@rollup/pluginutils';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { terser } from 'rollup-plugin-terser';
 import dotenv from 'dotenv';
 import path from 'path-browserify';
 import fs from 'fs';
@@ -46,8 +49,9 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
+    visualizer(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver()]
     }),
     Components({
       resolvers: [
@@ -56,9 +60,38 @@ export default defineConfig({
         AntDesignVueResolver({
           importStyle: false
         })
-      ],
-    }),
+      ]
+    })
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            // 根据路径拆分
+            const parts = id.toString().split('node_modules/');
+            if (parts[1].startsWith('@ant-design')) {
+              return 'ant-design';
+            }
+            // 可以继续根据不同的库进行拆分
+            if (parts[1].startsWith('lodash')) {
+              return 'lodash';
+            }
+            return makeLegalIdentifier(parts[1].split('/')[0]);
+          }
+          return 'main';
+        },
+        // 增加压缩插件
+        plugins: [
+          terser({
+            compress: {
+              drop_console: true,
+            },
+          }),
+        ],
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -80,8 +113,8 @@ export default defineConfig({
       '/api': {
         target: process.env.VITE_BASE_URL, // 设置你要代理的目标地址
         changeOrigin: true, // 将请求头中的 host 配置为 target
-        rewrite: path => path.replace(/^\/api/, '') // 可选的重写路径
+        rewrite: (path) => path.replace(/^\/api/, '') // 可选的重写路径
       }
     }
   }
-})
+});
