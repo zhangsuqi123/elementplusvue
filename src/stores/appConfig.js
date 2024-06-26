@@ -42,7 +42,6 @@ export const useAppConfig = defineStore('appConfig', {
     },
     async getBasicInfo() {
       return new Promise((resolve, reject) => {
-        console.log('已经执行初始化路由');
         Promise.all([this.getmenuData(), this.getRouteData()]).then(async res=>{
           this.menuData.push(...fmtMenu(this.defaultMenuData));
           const loading = document.getElementById('loading');

@@ -75,6 +75,9 @@ const handlePageChange = (pagerConfig) => {
       size="small"
       :auto-resize="true"
     >
+      <template #title v-slot="row">
+        <slot name="title" v-bind="row"></slot>
+      </template>
       <template v-for="(item, index) in getSlot()" :key="index" #[item]="row">
         <slot :name="item" v-bind="row"> </slot>
       </template>

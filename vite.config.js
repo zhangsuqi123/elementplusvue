@@ -94,16 +94,18 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@views' : fileURLToPath(new URL('./src/views', import.meta.url)),
+      '@com' : fileURLToPath(new URL('./src/components', import.meta.url))
     }
   },
   css: {
     preprocessorOptions: {
       scss: {
         additionalData: `
-        @import "@/assets/theme/_theme.scss";
-        @import "@/assets/variables/_light.scss";
-        @import "@/assets/variables/_dark.scss";
+          @import "@/assets/theme/_theme.scss";
+          @import "@/assets/variables/_light.scss";
+          @import "@/assets/variables/_dark.scss";
         `
       }
     }

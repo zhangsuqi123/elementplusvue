@@ -9,7 +9,7 @@
     :pager-config="pagerConfig"
     @pager-change="pageChange"
   >
-    <template #header>
+    <template #title>
       <a-button
         type="primary"
         @click="
